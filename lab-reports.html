@@ -574,7 +574,6 @@
                         var safeType = data.type || 'Lab Report';
                         var safeDoctor = data.doctor || 'Ikram Hospital';
                         var reportStatus = String(data.reportStatus || data.statusText || '').toLowerCase();
-                        // If no explicit reportStatus, treat status=success with a link as ready
                         if (!reportStatus) {
                             reportStatus = (responseStatus === 'success' || responseStatus === 'ready') && reportLink
                                 ? 'ready'
@@ -652,9 +651,8 @@
                 </div>`;
         }
 
-        // Allow Enter key to search
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') searchReports();
+            if (e.key === 'Enter') searchReport();
         });
     </script>
 </body>
