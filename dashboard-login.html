@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure login for Ikram Hospital forms submissions dashboard.">
+    <meta name="robots" content="noindex,nofollow">
+    
+        <title>Admin Login - Ikram Hospital</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .dashboard-login-wrap {
+            min-height: 100vh;
+            padding: 180px 0 90px;
+            background:
+                radial-gradient(620px circle at 8% 8%, rgba(255, 140, 0, 0.12), transparent 56%),
+                radial-gradient(540px circle at 92% 24%, rgba(0, 176, 80, 0.12), transparent 58%),
+                linear-gradient(135deg, #f8fafc 0%, #fff7ef 52%, #eef4fb 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-login-wrap::before {
+            content: '';
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            top: -110px;
+            left: -130px;
+            background: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        .dashboard-login-wrap::after {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            right: -120px;
+            bottom: -120px;
+            background: rgba(255, 255, 255, 0.58);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            pointer-events: none;
+        }
+
+        .dashboard-login-card {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 26px 64px rgba(15, 23, 42, 0.18);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(7px);
+        }
+
+        .dashboard-login-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0));
+        }
+
+        .dashboard-login-top {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 28px 22px;
+            text-align: center;
+        }
+
+        .dashboard-login-shield {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .dashboard-login-shield i {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .dashboard-login-top h1 {
+            margin: 0;
+            font-size: 1.48rem;
+            line-height: 1.3;
+            letter-spacing: 0.01em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+            color: #ffffff !important;
+        }
+
+        .dashboard-login-top p {
+            margin: 8px 0 0;
+            opacity: 0.95;
+            font-size: 0.95rem;
+            color: #fff7ef;
+        }
+
+        .dashboard-login-body {
+            padding: 24px 22px 22px;
+        }
+
+        .dashboard-login-field {
+            margin-bottom: 14px;
+        }
+
+        .dashboard-login-label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.88rem;
+            margin-bottom: 7px;
+            color: #334155;
+        }
+
+        .dashboard-login-input {
+            width: 100%;
+            border: 1px solid rgba(51, 65, 85, 0.24);
+            border-radius: 12px;
+            padding: 12px 13px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            color: #334155;
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .dashboard-login-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .dashboard-login-input:focus {
+            border-color: #ff8c00;
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.16);
+        }
+
+        .dashboard-login-actions {
+            margin-top: 18px;
+        }
+
+        #dashboardLoginBtn {
+            min-height: 50px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            box-shadow: 0 10px 24px rgba(255, 140, 0, 0.3);
+        }
+
+        .dashboard-login-error {
+            display: none;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: 1px solid #fecaca;
+            background: #fff1f2;
+            color: #b42318;
+            font-size: 0.9rem;
+            padding: 10px 12px;
+        }
+
+        .dashboard-login-note {
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-login-wrap {
+                padding: 150px 0 56px;
+            }
+
+            .dashboard-login-card {
+                border-radius: 18px;
+            }
+
+            .dashboard-login-top {
+                padding: 22px 16px;
+            }
+
+            .dashboard-login-body {
+                padding: 18px 16px 16px;
+            }
+        }
+    </style>
+</head>
+<body class="no-hero">
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Ikram Hospital Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-login-wrap">
+        <div class="container">
+            <section class="dashboard-login-card">
+                <div class="dashboard-login-top">
+                    <div class="dashboard-login-shield"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                    <h1>Admin Login</h1>
+                    <p>Authorized admin access only. Please sign in to continue.</p>
+                </div>
+                <div class="dashboard-login-body">
+                    <form id="dashboardLoginForm" autocomplete="off" novalidate>
+                        <div class="dashboard-login-field">
+                            <label class="dashboard-login-label" for="dashboardUser">Username</label>
+                            <input id="dashboardUser" class="dashboard-login-input" type="text" autocomplete="off" required>
+                        </div>
+                        <div class="dashboard-login-field">
+                            <label class="dashboard-login-label" for="dashboardPass">Password</label>
+                            <input id="dashboardPass" class="dashboard-login-input" type="password" autocomplete="off" required>
+                        </div>
+                        <div class="dashboard-login-actions">
+                            <button id="dashboardLoginBtn" type="submit" class="btn btn-primary" style="width:100%;">Login to Admin Panel</button>
+                        </div>
+                        <div id="dashboardLoginError" class="dashboard-login-error"></div>
+                    </form>
+                    <p class="dashboard-login-note">This login is restricted to the authorized hospital administrator.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Ikram Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const apiBase = window.FORMS_API_BASE_URL || 'http://localhost:4000';
+        const loginForm = document.getElementById('dashboardLoginForm');
+        const loginBtn = document.getElementById('dashboardLoginBtn');
+        const errorBox = document.getElementById('dashboardLoginError');
+
+        const params = new URLSearchParams(window.location.search);
+        const nextPage = params.get('next') || 'form-submissions.html';
+
+        function showError(message) {
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+        }
+
+        function getFriendlyLoginError(error) {
+            const raw = String((error && error.message) || '').toLowerCase();
+
+            if (raw.includes('invalid username or password')) {
+                return 'Login credentials are incorrect. Please verify your username and password and try again.';
+            }
+
+            if (raw.includes('failed to fetch') || raw.includes('networkerror') || raw.includes('load failed')) {
+                return 'Unable to connect to the secure server right now. Please ensure the backend service is running and try again.';
+            }
+
+            return 'Login could not be completed at this time. Please try again in a moment.';
+        }
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            errorBox.style.display = 'none';
+
+            const username = document.getElementById('dashboardUser').value.trim();
+            const password = document.getElementById('dashboardPass').value;
+
+            if (!username || !password) {
+                showError('Please enter username and password.');
+                return;
+            }
+
+            const authHeader = `Basic ${btoa(`${username}:${password}`)}`;
+            const defaultText = loginBtn.textContent;
+
+            try {
+                loginBtn.disabled = true;
+                loginBtn.textContent = 'Checking...';
+
+                const response = await fetch(`${apiBase}/api/contact-submissions`, {
+                    headers: {
+                        Authorization: authHeader
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Invalid username or password.');
+                }
+
+                sessionStorage.setItem('dashboardAuthHeader', authHeader);
+                sessionStorage.setItem('dashboardAuthUser', username);
+                window.location.href = nextPage;
+            } catch (error) {
+                showError(getFriendlyLoginError(error));
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = defaultText;
+            }
+        });
+    </script>
+    <script src="script.js" defer></script>
+</body>
+</html>

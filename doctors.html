@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ikram Hospital Doctors services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://ikramhospital.com/doctors.html">
+    <meta property="og:title" content="Doctors - Ikram Hospital">
+    <meta property="og:description" content="Ikram Hospital Doctors services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ikramhospital.com/doctors.html">
+    <meta property="og:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Doctors - Ikram Hospital">
+    <meta name="twitter:description" content="Ikram Hospital Doctors services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    <meta name="twitter:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
+    
+        <title>Doctors - Ikram Hospital</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"MedicalOrganization","@id":"https://ikramhospital.com/#organization","name":"Ikram Hospital","url":"https://ikramhospital.com","telephone":"(053) 3605377","address":{"@type":"PostalAddress","streetAddress":"Bhimber Road","addressLocality":"Gujrat","addressCountry":"PK"}},{"@type":"WebSite","@id":"https://ikramhospital.com/#website","url":"https://ikramhospital.com","name":"Ikram Hospital","publisher":{"@id":"https://ikramhospital.com/#organization"}},{"@type":"WebPage","name":"Doctors - Ikram Hospital","url":"https://ikramhospital.com/doctors.html","description":"Ikram Hospital Doctors services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.","isPartOf":{"@id":"https://ikramhospital.com/#website"},"about":{"@id":"https://ikramhospital.com/#organization"}}]}</script>
+</head>
+<body class="no-hero">
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Ikram Hospital Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="departments.html">Departments</a></li>
+                <li><a href="visitor-information.html">Visitor Info</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="services" id="doctor-list" style="padding: 80px 0; background: var(--white-color);">
+        <div class="container">
+            <h1>Our Medical Team</h1>
+            <p class="inner-page-intro">Explore detailed profiles of our doctors and choose the specialist who best fits your needs.</p>
+            
+            <!-- Search and Filter Section -->
+            <div class="search-filter-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by doctor name...">
+                </div>
+                <div class="filter-box">
+                    <select id="categoryFilter">
+                        <option value="">All Specialties</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="no-results-box" style="display: none;">
+                <p style="color: var(--gray-color); font-size: 16px;">No doctors found matching your search. Please try again.</p>
+            </div>
+
+            <div class="doctors-swipe-hint" aria-hidden="true">
+                <i class="fas fa-hand-point-right"></i>
+                <span>Swipe left or right to browse doctors</span>
+            </div>
+
+            <div class="doctors-grid" id="doctorsGrid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Ikram Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="doctors-data.js"></script>
+    <script>
+        function getDoctorCategory(doctor) {
+            const text = `${doctor.badge || ''} ${doctor.specialty || ''} ${doctor.details || ''}`.toLowerCase();
+
+            if (text.includes('ceo') || text.includes('director')) {
+                return 'Management';
+            }
+            if (text.includes('neuro')) {
+                return 'Neurology';
+            }
+            if (text.includes('physio') || text.includes('physical therap') || text.includes('rehab') || text.includes('pain management')) {
+                return 'Rehabilitation Services';
+            }
+            if (text.includes('cardio') || text.includes('heart')) {
+                return 'Cardiology';
+            }
+            if (text.includes('gastro') || text.includes('hepato') || text.includes('digestive') || text.includes('liver')) {
+                return 'Gastroenterology';
+            }
+            if (text.includes('gynec') || text.includes('obstetric')) {
+                return 'Obstetrics & Gynecology';
+            }
+            if (text.includes('pediatric') || text.includes('child')) {
+                return 'Pediatrics';
+            }
+            if (text.includes('ortho') || text.includes('spine')) {
+                return 'Orthopedics';
+            }
+            if (text.includes('ophthalm') || text.includes('eye')) {
+                return 'Ophthalmology';
+            }
+            if (text.includes('ent') || text.includes('ear') || text.includes('nose') || text.includes('throat') || text.includes('head & neck')) {
+                return 'ENT';
+            }
+            if (text.includes('urolog')) {
+                return 'Urology';
+            }
+            if (text.includes('chest') || text.includes('pulmon') || text.includes('respir')) {
+                return 'Respiratory Care';
+            }
+            if (text.includes('onco') || text.includes('cancer')) {
+                return 'Oncology';
+            }
+            if (text.includes('dermat') || text.includes('cosmetic') || text.includes('laser')) {
+                return 'Dermatology';
+            }
+            if (text.includes('psychiatr') || text.includes('mental')) {
+                return 'Psychiatry';
+            }
+            if (text.includes('dental') || text.includes('endodont')) {
+                return 'Dental';
+            }
+            if (text.includes('radiolog') || text.includes('ultrasound') || text.includes('imaging')) {
+                return 'Imaging';
+            }
+            if (text.includes('patholog') || text.includes('lab')) {
+                return 'Laboratory Services';
+            }
+            if (text.includes('surgeon') || text.includes('surgery')) {
+                return 'General Surgery';
+            }
+            return 'Internal Medicine';
+        }
+
+        (function renderDoctorCards() {
+            const doctorsGrid = document.getElementById('doctorsGrid');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const doctorsData = Array.isArray(window.doctorsData) ? window.doctorsData : [];
+
+            if (!doctorsGrid) return;
+
+            doctorsGrid.innerHTML = doctorsData.map((doctor) => {
+                const profileUrl = doctor.slug
+                    ? `doctor-profile.html?slug=${encodeURIComponent(doctor.slug)}`
+                    : (doctor.profile || '#');
+                const hasCardPhoto = Boolean(doctor.image);
+                const isFemaleDoctor = doctor.gender === 'female';
+                const isAsadPhoto = doctor.slug === 'asad-ali-sandhu';
+                const specialtyParts = (doctor.specialty || '').split(',').map((part) => part.trim()).filter(Boolean);
+                const primarySpecialty = specialtyParts[0] || '';
+                const secondarySpecialty = specialtyParts.slice(1).join(', ');
+                const category = getDoctorCategory(doctor);
+                const initials = doctor.name
+                    .replace('Dr.', '')
+                    .trim()
+                    .split(/\s+/)
+                    .slice(0, 2)
+                    .map((part) => part.charAt(0).toUpperCase())
+                    .join('');
+
+                return `
+                    <a href="${profileUrl}" class="doctor-card" data-name="${doctor.name}" data-specialty="${doctor.specialty}" data-category="${category}">
+                        <div class="doctor-image">
+                            ${hasCardPhoto
+                                ? `<img class="doctor-card-photo${isAsadPhoto ? ' doctor-card-photo-asad' : ''}" src="${doctor.image}" alt="${doctor.name}" loading="lazy" decoding="async">`
+                                : `<div class="doctor-image-placeholder ${isFemaleDoctor ? 'doctor-image-placeholder-female' : ''}" aria-label="${doctor.name} photo coming soon">
+                                        <i class="fas ${isFemaleDoctor ? 'fa-user-nurse' : 'fa-user-md'}" aria-hidden="true"></i>
+                                        <span>${initials}</span>
+                                   </div>`}
+                        </div>
+                        <div class="doctor-name-row">
+                            <h3>${doctor.name}</h3>
+                            ${doctor.badge ? `<span class="doctor-role-badge" aria-label="${doctor.badge} badge">${doctor.badge}</span>` : ''}
+                        </div>
+                        <p class="specialty">${primarySpecialty}</p>
+                        ${secondarySpecialty ? `<p class="specialty specialty-sub">${secondarySpecialty}</p>` : ''}
+                        <p class="doctor-details">${doctor.details}</p>
+                        <div class="btn btn-small">View Profile</div>
+                    </a>
+                `;
+            }).join('');
+
+            if (!categoryFilter) return;
+
+            const categoryOrder = [
+                'Management',
+                'Cardiology',
+                'Neurology',
+                'Internal Medicine',
+                'General Surgery',
+                'Gastroenterology',
+                'Obstetrics & Gynecology',
+                'Pediatrics',
+                'Orthopedics',
+                'Ophthalmology',
+                'ENT',
+                'Urology',
+                'Respiratory Care',
+                'Oncology',
+                'Dermatology',
+                'Psychiatry',
+                'Dental',
+                'Imaging',
+                'Laboratory Services',
+                'Rehabilitation Services'
+            ];
+
+            const categories = [...new Set(doctorsData.map((doctor) => getDoctorCategory(doctor)))];
+            const sortedCategories = categoryOrder.filter((category) =>
+                categories.includes(category) || category === 'Rehabilitation Services'
+            );
+
+            categoryFilter.innerHTML = '<option value="">All Services</option>' +
+                sortedCategories.map((category) => `<option value="${category}">${category}</option>`).join('');
+        })();
+    </script>
+    <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

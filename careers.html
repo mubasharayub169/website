@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Careers at Ikram Hospital. Explore opportunities to join our medical and support teams.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    
+        <title>Careers - Ikram Hospital</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="canonical" href="https://ikramhospital.com/careers.html">
+    <meta property="og:title" content="Careers - Ikram Hospital">
+    <meta property="og:description" content="Explore current and upcoming job opportunities at Ikram Hospital.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ikramhospital.com/careers.html">
+    <meta property="og:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Careers - Ikram Hospital">
+    <meta name="twitter:description" content="Explore current and upcoming job opportunities at Ikram Hospital.">
+    <meta name="twitter:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="no-hero">
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Ikram Hospital Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="visitor-information.html">Visitor Info</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero about-hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="section-subtitle">Join Our Team</span>
+                <h1>Careers at Ikram Hospital</h1>
+                <p>Build a meaningful healthcare career in a collaborative environment focused on patient safety and service excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="legal-section">
+        <div class="container legal-wrapper">
+            <div class="legal-card">
+                <p class="legal-lead">We welcome qualified professionals who share our commitment to compassionate and high-quality care.</p>
+                <div class="career-cards">
+                    <article class="career-item">
+                        <h3>Medical Staff</h3>
+                        <p>Consultants, specialists, and physicians with strong clinical skills and patient-centered values.</p>
+                    </article>
+                    <article class="career-item">
+                        <h3>Nursing and Allied Health</h3>
+                        <p>Nurses, technicians, therapists, and support teams dedicated to safe, coordinated care delivery.</p>
+                    </article>
+                    <article class="career-item">
+                        <h3>Administration</h3>
+                        <p>Operations, reception, HR, and quality personnel who help keep services efficient and reliable.</p>
+                    </article>
+                </div>
+                <p class="legal-note">To apply, submit your CV and credentials using our <a href="contact.html">Contact Page</a> and mention "Career Application" in your message.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="hiring-section" id="apply-now">
+        <div class="container">
+            <div class="hiring-layout">
+                <aside class="hiring-info">
+                    <h3>Application Process</h3>
+                    <p>Submit your profile and our HR team will review your application for current or upcoming opportunities.</p>
+                    <ul>
+                        <li>Initial profile screening by HR</li>
+                        <li>Departmental review and shortlisting</li>
+                        <li>Interview scheduling for selected candidates</li>
+                        <li>Final offer and onboarding guidance</li>
+                    </ul>
+                    <p><strong>Response Window:</strong> 5 to 10 working days for shortlisted applications.</p>
+                </aside>
+
+                <form id="hiringForm" class="hiring-form" novalidate>
+                    <h3>Apply for a Position</h3>
+                    <div class="hiring-grid">
+                        <input type="text" name="fullName" placeholder="Full Name" autocomplete="name" required>
+                        <input type="email" name="email" placeholder="Email Address" autocomplete="email" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" required>
+                        <select name="department" required>
+                            <option value="">Select Department</option>
+                            <option value="medical">Medical Staff</option>
+                            <option value="nursing">Nursing and Allied Health</option>
+                            <option value="admin">Administration</option>
+                        </select>
+                        <input type="text" name="position" placeholder="Position Applied For" class="full-width" required>
+                        <input type="number" min="0" max="45" name="experience" placeholder="Years of Experience" required>
+                        <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+                        <textarea name="coverLetter" rows="5" class="full-width" placeholder="Briefly describe your qualifications and why you want to join Ikram Hospital" required></textarea>
+                    </div>
+                    <label class="hiring-checkbox">
+                        <input type="checkbox" name="consent" required>
+                        <span>I confirm the information provided is accurate and I consent to be contacted regarding hiring opportunities.</span>
+                    </label>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                    <div id="hiringSuccess" class="hiring-message success">Thank you. Your application has been received. Our HR team will contact shortlisted candidates.</div>
+                    <div id="hiringError" class="hiring-message error">Please complete all required fields before submitting your application.</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ikram Hospital</h4>
+                    <p>A professional healthcare workplace focused on learning, teamwork, and better outcomes for every patient.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Important Links</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="complaints.html">Complaints</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                </div>
+                <div class="footer-bottom">
+                <p>&copy; 2026 Ikram Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script>
+        const hiringForm = document.getElementById('hiringForm');
+        const hiringSuccess = document.getElementById('hiringSuccess');
+        const hiringError = document.getElementById('hiringError');
+        const web3FormsAccessKey = window.WEB3FORMS_ACCESS_KEY || '254447ac-d84b-42f6-91f2-6f4fd7a551b2';
+
+        if (hiringForm) {
+            hiringForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                if (!hiringForm.checkValidity()) {
+                    hiringSuccess.style.display = 'none';
+                    hiringError.textContent = 'Please complete all required fields before submitting your application.';
+                    hiringError.style.display = 'block';
+                    return;
+                }
+
+                const submitButton = hiringForm.querySelector('button[type="submit"]');
+                const defaultText = submitButton ? submitButton.textContent : '';
+
+                if (!web3FormsAccessKey) {
+                    hiringSuccess.style.display = 'none';
+                    hiringError.textContent = 'Web3Forms access key is missing. Please add your key before using this form.';
+                    hiringError.style.display = 'block';
+                    return;
+                }
+
+                try {
+                    hiringError.style.display = 'none';
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.textContent = 'Submitting...';
+                    }
+
+                    const formData = new FormData(hiringForm);
+                    formData.append('access_key', web3FormsAccessKey);
+                    formData.append('subject', 'New Career Application - Ikram Hospital');
+                    formData.append('from_name', formData.get('fullName') || 'Career Applicant');
+                    formData.append('botcheck', '');
+
+                    const response = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const payload = await response.json().catch(() => ({}));
+                    if (!response.ok) {
+                        throw new Error(payload.message || 'Application submit failed.');
+                    }
+
+                    hiringSuccess.style.display = 'block';
+                    hiringForm.reset();
+                } catch (error) {
+                    hiringSuccess.style.display = 'none';
+                    hiringError.textContent = error.message || 'Failed to submit application. Please try again.';
+                    hiringError.style.display = 'block';
+                } finally {
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = defaultText;
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

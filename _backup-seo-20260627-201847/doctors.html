@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ikram Hospital Doctors services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    <link rel="canonical" href="https://ikramhospital.com/doctors.html">
+    <meta property="og:title" content="Doctors - Ikram Hospital">
+    <meta property="og:description" content="Ikram Hospital Doctors services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ikramhospital.com/doctors.html">
+    <meta property="og:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Doctors - Ikram Hospital">
+    <meta name="twitter:description" content="Ikram Hospital Doctors services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    <meta name="twitter:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
+    <title>Doctors - Ikram Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="no-hero">
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Ikram Hospital Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="departments.html">Departments</a></li>
+                <li><a href="visitor-information.html">Visitor Info</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="services" id="doctor-list" style="padding: 80px 0; background: var(--white-color);">
+        <div class="container">
+            <h2>Our Medical Team</h2>
+            <p style="text-align: center; color: var(--gray-color); max-width: 800px; margin: 0 auto 40px;">Explore detailed profiles of our doctors and choose the specialist who best fits your needs.</p>
+            
+            <!-- Search and Filter Section -->
+            <div class="search-filter-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by doctor name...">
+                </div>
+                <div class="filter-box">
+                    <select id="categoryFilter">
+                        <option value="">All Specialties</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" style="display: none; text-align: center; padding: 40px;">
+                <p style="color: var(--gray-color); font-size: 16px;">No doctors found matching your search. Please try again.</p>
+            </div>
+
+            <div class="doctors-grid" id="doctorsGrid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Ikram Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add more objects here to upload 20+ doctors quickly.
+        const doctorsData = [
+            {
+                name: 'Dr. Suleman Bashir',
+                specialty: 'Medical Specialist',
+                details: 'MBBS, MD Internal Medicine - 15+ years experience',
+                image: 'https://images.unsplash.com/photo-1537506122928-8a56e3fd49ec?w=500&h=500&fit=crop',
+                profile: 'doctor-suleman-bashir.html'
+            },
+            {
+                name: 'Dr. Sara Zain',
+                specialty: 'Gynecologist',
+                details: 'MBBS, FCPS - 12+ years experience',
+                image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop',
+                profile: 'doctor-sara-zain.html'
+            },
+            {
+                name: 'Dr. Soban Sarwar',
+                specialty: 'Neurologist',
+                details: 'MBBS, MD Neurology - 18+ years experience',
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop',
+                profile: 'doctor-soban-sarwar.html'
+            },
+            {
+                name: 'Dr. Kanwal Shehzad',
+                specialty: 'Pediatrician',
+                details: 'MBBS, FCPS Pediatrics - 10+ years experience',
+                image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=500&fit=crop',
+                profile: 'doctor-kanwal-shehzad.html'
+            }
+        ];
+
+        (function renderDoctorCards() {
+            const doctorsGrid = document.getElementById('doctorsGrid');
+            const categoryFilter = document.getElementById('categoryFilter');
+
+            if (!doctorsGrid) return;
+
+            doctorsGrid.innerHTML = doctorsData.map((doctor) => {
+                return `
+                    <a href="${doctor.profile || '#'}" class="doctor-card" data-name="${doctor.name}" data-specialty="${doctor.specialty}">
+                        <div class="doctor-image">
+                            <img src="${doctor.image}" alt="${doctor.name}" loading="lazy" decoding="async">
+                        </div>
+                        <h3>${doctor.name}</h3>
+                        <p class="specialty">${doctor.specialty}</p>
+                        <p>${doctor.details}</p>
+                        <div class="btn btn-small">View Profile</div>
+                    </a>
+                `;
+            }).join('');
+
+            if (!categoryFilter) return;
+
+            const specialties = [...new Set(doctorsData.map((doctor) => doctor.specialty))].sort();
+            categoryFilter.innerHTML = '<option value="">All Specialties</option>' +
+                specialties.map((specialty) => `<option value="${specialty}">${specialty}</option>`).join('');
+        })();
+    </script>
+    <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+

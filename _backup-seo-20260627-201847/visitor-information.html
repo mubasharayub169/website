@@ -1,0 +1,529 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ikram Hospital Visitor Information services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    
+    <meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://ikramhospital.com/visitor-information.html">
+    <meta property="og:title" content="Visitor Information - Ikram Hospital">
+    <meta property="og:description" content="Ikram Hospital Visitor Information services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ikramhospital.com/visitor-information.html">
+    <meta property="og:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Visitor Information - Ikram Hospital">
+    <meta name="twitter:description" content="Ikram Hospital Visitor Information services in Gujrat. Expert doctors, modern facilities, and easy appointment booking.">
+    <meta name="twitter:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
+    <title>Visitor Information - Ikram Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .visitor-section {
+            padding: 60px 0;
+            background: var(--white-color);
+        }
+
+        .visitor-section:nth-child(even) {
+            background: var(--light-color);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .info-card {
+            background: var(--white-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .info-card p {
+            color: var(--gray-color);
+            line-height: 1.8;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--gray-color);
+            font-size: 16px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .visiting-hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .visiting-hours-table th {
+            background: var(--primary-color);
+            color: var(--white-color);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .visiting-hours-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--light-color);
+        }
+
+        .visiting-hours-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .important-list {
+            background: var(--accent-light);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .important-list h3 {
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        .important-list ul {
+            list-style: none;
+        }
+
+        .important-list li {
+            padding: 10px 0;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .important-list li:before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .facility-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), #FF6B00);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: var(--white-color);
+            font-size: 32px;
+        }
+
+        .map-section {
+            margin-top: 30px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .location-info {
+            background: var(--white-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .location-info h3 {
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .location-detail {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .location-detail i {
+            color: var(--primary-color);
+            font-size: 20px;
+            width: 30px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .location-detail p {
+            color: var(--gray-color);
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .visiting-hours-table th,
+            .visiting-hours-table td {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body class="no-hero">
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Ikram Hospital Logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="departments.html">Departments</a></li>
+                <li><a href="visitor-information.html">Visitor Info</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero about-hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="section-subtitle">Plan Your Visit</span>
+                <h1>Visitor Information & Guidelines</h1>
+                <p>Everything you need to know about visiting Ikram Hospital - from parking to facilities and visiting hours.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visiting Hours -->
+    <section class="visitor-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Visiting Hours</h2>
+                <p>Plan your visit according to our hospital visiting schedule</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <table class="visiting-hours-table">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Monday - Friday</strong></td>
+                                <td>10:00 AM - 8:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Saturday</strong></td>
+                                <td>10:00 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sunday</strong></td>
+                                <td>12:00 PM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Public Holidays</strong></td>
+                                <td>1:00 PM - 5:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Emergency Ward</strong></td>
+                                <td>24 Hours</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ICU Visits</strong></td>
+                                <td>2:00 PM - 3:00 PM &<br>6:00 PM - 7:00 PM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <div class="important-list">
+                        <h3><i class="fas fa-exclamation-circle"></i> Important Guidelines</h3>
+                        <ul>
+                            <li>Maximum 2 visitors per patient at a time</li>
+                            <li>Children below 12 years should be accompanied by an adult</li>
+                            <li>Avoid loud conversations and maintain silence</li>
+                            <li>Do not bring flowers or gifts without permission</li>
+                            <li>Use hand sanitizer upon entry</li>
+                            <li>No mobile phones in operation theaters</li>
+                            <li>Inform staff if patient is in isolation ward</li>
+                            <li>Respect patient privacy and confidentiality</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities -->
+    <section class="visitor-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hospital Facilities for Visitors</h2>
+                <p>We provide comfortable and convenient facilities for all our visitors</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-parking"></i>
+                    </div>
+                    <h3>Parking</h3>
+                    <p>Ample covered parking available for visitors. Designated parking areas are located near each entrance for easy access.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <h3>Cafeteria</h3>
+                    <p>Modern cafeteria serving fresh food, beverages, and snacks. Hygienic preparation and reasonable prices ensure comfort during your stay.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Free WiFi</h3>
+                    <p>High-speed WiFi available throughout the hospital premises. Stay connected with your loved ones while visiting.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-wheelchair"></i>
+                    </div>
+                    <h3>Accessibility</h3>
+                    <p>Wheelchair accessibility throughout the hospital. Elevators, ramps, and specially designed restrooms for disabled visitors.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-restroom"></i>
+                    </div>
+                    <h3>Rest Areas</h3>
+                    <p>Comfortable lounge areas with seating, television, and climate control for visitor comfort and convenience.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3>Gift Shop</h3>
+                    <p>On-site gift shop offering flowers, gifts, books, and essentials. Open during regular visiting hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transportation -->
+    <section class="visitor-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Getting to Ikram Hospital</h2>
+                <p>Multiple convenient transportation options available</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-bus"></i>
+                    <h3>Public Transport</h3>
+                    <p>Located on main highway with regular bus routes. Bus stops available near main entrance and emergency ward.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-taxi"></i>
+                    <h3>Taxi & Ride-Share</h3>
+                    <p>Easy taxi and ride-sharing access. Designated drop-off areas near all entrances for quick and safe access.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Personal Vehicle</h3>
+                    <p>Ample parking with designated visitor zones. Parking fee applies. Monthly passes available at reception.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-ambulance"></i>
+                    <h3>Ambulance Service</h3>
+                    <p>24/7 ambulance services available for medical emergencies. Quick response time with trained paramedics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Map -->
+    <section class="visitor-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Us</h2>
+                <p>Visit our location in the heart of the city</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <div class="location-info">
+                        <h3>Contact Information</h3>
+                        <div class="location-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p><strong>Address:</strong> Medical Plaza, Main Highway<br>Central District, City 12345</p>
+                        </div>
+                        <div class="location-detail">
+                            <i class="fas fa-phone"></i>
+                            <p><strong>Appointments:</strong> (053) 3605377</p>
+                        </div>
+                        <div class="location-detail">
+                            <i class="fas fa-envelope"></i>
+                            <p><strong>Email:</strong> info@ikramhospital.com</p>
+                        </div>
+                        <div class="location-detail">
+                            <i class="fas fa-clock"></i>
+                            <p><strong>Appointments:</strong> (053) 3605377<br>Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="important-list">
+                        <h3><i class="fas fa-info-circle"></i> Before You Visit</h3>
+                        <ul>
+                            <li>Check patient room number at reception</li>
+                            <li>Bring valid identification</li>
+                            <li>Inform security about your visit</li>
+                            <li>Keep personal belongings secure</li>
+                            <li>Follow infection control protocols</li>
+                            <li>No photography without permission</li>
+                            <li>Report any concerns to staff</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="map-section">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345100616!2d144.9537353!3d-37.8162099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf00ef62049ee50!2sFlinders%20Street%20Station!5e0!3m2!1sen!2sau!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services -->
+    <section class="visitor-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Additional Services</h2>
+                <p>Special services to make your visit more comfortable</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-concierge-bell"></i>
+                    <h3>Concierge Service</h3>
+                    <p>Our concierge team can assist with directions, information, and special arrangements to make your visit comfortable.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-language"></i>
+                    <h3>Interpreter Service</h3>
+                    <p>Translation services available in multiple languages. Contact reception 24 hours in advance for arrangements.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-luggage"></i>
+                    <h3>Lockers & Storage</h3>
+                    <p>Secure lockers available to store personal belongings during your visit at nominal charges.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Patient Support</h3>
+                    <p>Our patient support team can provide information about care and recovery. Speak with staff at the information desk.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Ikram Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
+
+
+

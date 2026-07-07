@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View website contact and careers form submissions in a simple dashboard.">
+    <meta name="robots" content="noindex,nofollow">
+    
+        <title>Admin Dashboard - Ikram Hospital</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .submissions-wrap {
+            padding: 170px 0 88px;
+            background:
+                radial-gradient(640px circle at 7% 10%, rgba(255, 140, 0, 0.11), transparent 58%),
+                radial-gradient(500px circle at 96% 24%, rgba(0, 176, 80, 0.1), transparent 56%),
+                linear-gradient(135deg, #f7f9fc 0%, #fdf7ef 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submissions-wrap::before {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            left: -140px;
+            bottom: -110px;
+            background: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        .submissions-top {
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            margin-bottom: 18px;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(6px);
+        }
+
+        .submissions-top::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0));
+        }
+
+        .submissions-top-left {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .dashboard-admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 140, 0, 0.12);
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            color: #9f4b00;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .submissions-top h1 {
+            font-size: 1.75rem;
+            margin: 0;
+            color: #1f2937;
+            letter-spacing: 0.01em;
+        }
+
+        .submissions-top p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.94rem;
+        }
+
+        .submissions-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .type-filters {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px;
+            border-radius: 12px;
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .type-filter-btn {
+            border: none;
+            border-radius: 9px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #475569;
+            background: transparent;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .type-filter-btn.active {
+            color: #9f4b00;
+            background: rgba(255, 140, 0, 0.15);
+        }
+
+        .submissions-search {
+            min-width: 250px;
+            max-width: 320px;
+            width: 100%;
+            padding: 11px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(15, 23, 42, 0.18);
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #fff;
+            color: #334155;
+        }
+
+        .submissions-date {
+            min-width: 190px;
+            max-width: 220px;
+        }
+
+        .submissions-search::placeholder {
+            color: #94a3b8;
+        }
+
+        .submissions-action-btn {
+            min-height: 44px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+            font-weight: 700;
+        }
+
+        #refreshBtn,
+        #exportBtn {
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+        }
+
+        #logoutBtn {
+            background: #ffffff;
+            color: #b42318;
+            border: 1px solid rgba(180, 35, 24, 0.24);
+        }
+
+        #logoutBtn:hover {
+            background: #fff1f2;
+        }
+
+        #clearDateBtn {
+            background: #ffffff;
+            color: #475569;
+            border: 1px solid rgba(71, 85, 105, 0.2);
+        }
+
+        #clearDateBtn:hover {
+            background: #f8fafc;
+        }
+
+        .submissions-search:focus {
+            border-color: #ff8c00;
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.16);
+        }
+
+        .submissions-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .daily-summary {
+            margin-bottom: 18px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 16px;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+            padding: 14px 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .daily-summary h4 {
+            margin: 0 0 10px;
+            font-size: 0.95rem;
+            color: #334155;
+            letter-spacing: 0.02em;
+        }
+
+        .daily-summary-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .day-pill {
+            border: 1px solid rgba(255, 140, 0, 0.28);
+            background: rgba(255, 140, 0, 0.08);
+            color: #9f4b00;
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .day-pill:hover {
+            background: rgba(255, 140, 0, 0.14);
+        }
+
+        .day-pill-active {
+            background: rgba(0, 176, 80, 0.15);
+            border-color: rgba(0, 176, 80, 0.35);
+            color: #0e7a45;
+        }
+
+        .daily-summary-empty {
+            color: #64748b;
+            font-size: 0.86rem;
+            margin: 0;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-box i {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: #9f4b00;
+            background: rgba(255, 140, 0, 0.13);
+        }
+
+        .stat-box h3 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: #1f2937;
+        }
+
+        .stat-box p {
+            margin: 6px 0 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .table-wrap {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 18px;
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
+        .table-head {
+            display: grid;
+            grid-template-columns: 84px 120px 1.15fr 0.95fr 0.85fr 0.95fr 1.1fr 1.5fr 1fr 0.9fr 0.9fr;
+            gap: 0;
+            background: linear-gradient(180deg, #fff5e7 0%, #ffefd8 100%);
+            border-bottom: 1px solid #ffd9aa;
+            font-size: 0.82rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #8a4f00;
+        }
+
+        .table-head div,
+        .table-row div {
+            padding: 13px 12px;
+            border-right: 1px solid rgba(15, 23, 42, 0.06);
+        }
+
+        .table-head div:last-child,
+        .table-row div:last-child {
+            border-right: none;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 84px 120px 1.15fr 0.95fr 0.85fr 0.95fr 1.1fr 1.5fr 1fr 0.9fr 0.9fr;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+            font-size: 0.9rem;
+            color: #1f2937;
+            align-items: start;
+            transition: background-color 0.2s ease;
+        }
+
+        .table-row:hover {
+            background: #f8fbff;
+        }
+
+        .tag-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 4px 8px;
+        }
+
+        .tag-chip-contact {
+            background: rgba(14, 165, 233, 0.14);
+            color: #0c4a6e;
+            border: 1px solid rgba(14, 165, 233, 0.35);
+        }
+
+        .tag-chip-career {
+            background: rgba(249, 115, 22, 0.14);
+            color: #9a3412;
+            border: 1px solid rgba(249, 115, 22, 0.35);
+        }
+
+        .resume-link {
+            color: #0f4c81;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .resume-link:hover {
+            text-decoration: underline;
+        }
+
+        .delete-btn {
+            border: 1px solid rgba(180, 35, 24, 0.3);
+            background: #fff1f2;
+            color: #b42318;
+            border-radius: 10px;
+            padding: 7px 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .delete-btn:hover {
+            background: #ffe4e6;
+            transform: translateY(-1px);
+        }
+
+        .delete-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+            transform: none;
+        }
+
+        .table-row:nth-child(even) {
+            background: #fcfdff;
+        }
+
+        .row-message {
+            white-space: pre-wrap;
+            line-height: 1.45;
+        }
+
+        .empty-state,
+        .error-state,
+        .loading-state {
+            padding: 36px 18px;
+            text-align: center;
+            color: var(--gray-color);
+        }
+
+        .error-state {
+            color: #b42318;
+            background: #fff3f2;
+            border: 1px solid #fecaca;
+            margin: 16px;
+            border-radius: 12px;
+        }
+
+        .submissions-cards {
+            display: none;
+            padding: 12px;
+        }
+
+        .submission-card {
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+            background: #ffffff;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.1);
+        }
+
+        .submission-card h3 {
+            margin: 0 0 8px;
+            font-size: 1.02rem;
+            color: #0f172a;
+        }
+
+        .submission-card p {
+            margin: 6px 0;
+            font-size: 0.88rem;
+            color: #374151;
+        }
+
+        .submission-card strong {
+            color: #111827;
+        }
+
+        @media (max-width: 1100px) {
+            .table-wrap {
+                overflow-x: auto;
+            }
+
+            .table-head,
+            .table-row {
+                min-width: 1380px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .submissions-wrap {
+                padding: 146px 0 50px;
+            }
+
+            .submissions-top h1 {
+                font-size: 1.35rem;
+            }
+
+            .submissions-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .submissions-top-left {
+                width: 100%;
+            }
+
+            .submissions-actions {
+                width: 100%;
+            }
+
+            .submissions-search {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .submissions-date {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .submissions-action-btn {
+                width: 100%;
+            }
+
+            .type-filters {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .type-filter-btn {
+                flex: 1 1 0;
+            }
+
+            .table-head,
+            .table-body {
+                display: none;
+            }
+
+            .submissions-cards {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="no-hero">
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Ikram Hospital Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="submissions-wrap">
+        <div class="container">
+            <section class="submissions-top">
+                <div class="submissions-top-left">
+                    <div class="dashboard-admin-badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Protected Admin Panel</div>
+                    <h1>Admin Dashboard</h1>
+                    <p>All contact and careers form requests are shown here in newest-first order.</p>
+                </div>
+                <div class="submissions-actions">
+                    <div class="type-filters" role="group" aria-label="Filter by submission type">
+                        <button type="button" class="type-filter-btn active" data-type="all">All</button>
+                        <button type="button" class="type-filter-btn" data-type="contact">Contact</button>
+                        <button type="button" class="type-filter-btn" data-type="career">Career</button>
+                    </div>
+                    <input type="search" id="searchInput" class="submissions-search" placeholder="Search name, email, phone, department, position..." aria-label="Search submissions">
+                    <input type="date" id="dateFilterInput" class="submissions-search submissions-date" aria-label="Filter by submission date">
+                    <button type="button" id="clearDateBtn" class="btn submissions-action-btn"><i class="fas fa-calendar-xmark"></i> Clear Date</button>
+                    <button type="button" id="exportBtn" class="btn btn-secondary submissions-action-btn"><i class="fas fa-file-csv"></i> Export CSV</button>
+                    <button type="button" id="refreshBtn" class="btn btn-primary submissions-action-btn"><i class="fas fa-rotate-right"></i> Refresh</button>
+                    <button type="button" id="logoutBtn" class="btn submissions-action-btn"><i class="fas fa-right-from-bracket"></i> Logout</button>
+                </div>
+            </section>
+
+            <section class="submissions-stats">
+                <article class="stat-box">
+                    <i class="fas fa-inbox" aria-hidden="true"></i>
+                    <h3 id="totalCount">0</h3>
+                    <p>Total Submissions</p>
+                </article>
+                <article class="stat-box">
+                    <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                    <h3 id="todayCount">0</h3>
+                    <p>Submitted Today</p>
+                </article>
+                <article class="stat-box">
+                    <i class="fas fa-user-shield" aria-hidden="true"></i>
+                    <h3 id="activeUser">-</h3>
+                    <p>Logged In User</p>
+                </article>
+            </section>
+
+            <section class="daily-summary">
+                <h4>Requests by Day</h4>
+                <div id="dailySummaryList" class="daily-summary-list"></div>
+            </section>
+
+            <section class="table-wrap">
+                <div id="loadingState" class="loading-state">Loading submissions...</div>
+                <div id="errorState" class="error-state" style="display:none;"></div>
+
+                <div class="table-head" id="tableHead" style="display:none;">
+                    <div>ID</div>
+                    <div>Type</div>
+                    <div>Name</div>
+                    <div>Email</div>
+                    <div>Phone</div>
+                    <div>Department</div>
+                    <div>Position</div>
+                    <div>Message</div>
+                    <div>Resume</div>
+                    <div>Date</div>
+                    <div>Action</div>
+                </div>
+
+                <div class="table-body" id="tableBody"></div>
+                <div class="submissions-cards" id="cardsBody"></div>
+                <div id="emptyState" class="empty-state" style="display:none;">No form submissions yet.</div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Ikram Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const apiBase = window.FORMS_API_BASE_URL || 'http://localhost:4000';
+        let authHeaderValue = '';
+        const loadingState = document.getElementById('loadingState');
+        const errorState = document.getElementById('errorState');
+        const emptyState = document.getElementById('emptyState');
+        const tableHead = document.getElementById('tableHead');
+        const tableBody = document.getElementById('tableBody');
+        const cardsBody = document.getElementById('cardsBody');
+        const totalCount = document.getElementById('totalCount');
+        const todayCount = document.getElementById('todayCount');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const submissionsSearchInput = document.getElementById('searchInput');
+        const dateFilterInput = document.getElementById('dateFilterInput');
+        const clearDateBtn = document.getElementById('clearDateBtn');
+        const typeFilterButtons = document.querySelectorAll('.type-filter-btn');
+        const activeUser = document.getElementById('activeUser');
+        const dailySummaryList = document.getElementById('dailySummaryList');
+        const IDLE_TIMEOUT_MS = 5 * 60 * 1000;
+        const activityEvents = ['click', 'keydown', 'mousemove', 'scroll', 'touchstart'];
+        let allRows = [];
+        let currentTypeFilter = 'all';
+        let currentDateFilter = '';
+        let idleTimerId = null;
+        let autoLockInitialized = false;
+
+        function requestPageAccess() {
+            const storedAuth = sessionStorage.getItem('dashboardAuthHeader') || '';
+            const user = sessionStorage.getItem('dashboardAuthUser') || 'admin';
+            if (!storedAuth.startsWith('Basic ')) {
+                const nextParam = encodeURIComponent('form-submissions.html');
+                window.location.href = `dashboard-login.html?next=${nextParam}`;
+                return false;
+            }
+            authHeaderValue = storedAuth;
+            if (activeUser) {
+                activeUser.textContent = user;
+            }
+            return true;
+        }
+
+        function clearDashboardSession() {
+            sessionStorage.removeItem('dashboardAuthHeader');
+            sessionStorage.removeItem('dashboardAuthUser');
+        }
+
+        function lockAndRedirectToLogin() {
+            clearDashboardSession();
+            const nextParam = encodeURIComponent('form-submissions.html');
+            window.location.href = `dashboard-login.html?next=${nextParam}`;
+        }
+
+        function logoutDashboard() {
+            lockAndRedirectToLogin();
+        }
+
+        function resetIdleTimer() {
+            if (idleTimerId) {
+                clearTimeout(idleTimerId);
+            }
+
+            idleTimerId = setTimeout(() => {
+                alert('Session locked after 5 minutes of inactivity. Please login again.');
+                lockAndRedirectToLogin();
+            }, IDLE_TIMEOUT_MS);
+        }
+
+        function initAutoLock() {
+            if (autoLockInitialized) return;
+            autoLockInitialized = true;
+
+            activityEvents.forEach((eventName) => {
+                window.addEventListener(eventName, resetIdleTimer, { passive: true });
+            });
+
+            resetIdleTimer();
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '-';
+            const normalized = dateStr.includes('T') ? dateStr : `${dateStr}Z`.replace(' ', 'T');
+            const dt = new Date(normalized);
+            if (Number.isNaN(dt.getTime())) return dateStr;
+            return dt.toLocaleString();
+        }
+
+        function isToday(dateStr) {
+            if (!dateStr) return false;
+            const normalized = dateStr.includes('T') ? dateStr : `${dateStr}Z`.replace(' ', 'T');
+            const dt = new Date(normalized);
+            if (Number.isNaN(dt.getTime())) return false;
+            const now = new Date();
+            return dt.getFullYear() === now.getFullYear() &&
+                dt.getMonth() === now.getMonth() &&
+                dt.getDate() === now.getDate();
+        }
+
+        function toCsvValue(value) {
+            const safe = String(value || '').replace(/\r?\n/g, ' ').trim();
+            return `"${safe.replace(/"/g, '""')}"`;
+        }
+
+        function toDateKey(dateStr) {
+            if (!dateStr) return '';
+            const normalized = dateStr.includes('T') ? dateStr : `${dateStr}Z`.replace(' ', 'T');
+            const dt = new Date(normalized);
+            if (Number.isNaN(dt.getTime())) return '';
+            const year = dt.getFullYear();
+            const month = String(dt.getMonth() + 1).padStart(2, '0');
+            const day = String(dt.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function formatDateKeyLabel(dateKey) {
+            if (!dateKey) return '-';
+            const dt = new Date(`${dateKey}T00:00:00`);
+            if (Number.isNaN(dt.getTime())) return dateKey;
+            return dt.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
+        }
+
+        function renderDailySummary(rows) {
+            const byDay = rows.reduce((acc, row) => {
+                const dateKey = toDateKey(row.created_at);
+                if (!dateKey) return acc;
+                acc[dateKey] = (acc[dateKey] || 0) + 1;
+                return acc;
+            }, {});
+
+            const entries = Object.entries(byDay).sort((a, b) => b[0].localeCompare(a[0]));
+            if (!entries.length) {
+                dailySummaryList.innerHTML = '<p class="daily-summary-empty">No records available for daily summary.</p>';
+                return;
+            }
+
+            dailySummaryList.innerHTML = entries.map(([dateKey, count]) => `
+                <button type="button" class="day-pill ${currentDateFilter === dateKey ? 'day-pill-active' : ''}" data-date="${escapeHtml(dateKey)}">
+                    ${escapeHtml(formatDateKeyLabel(dateKey))}: ${escapeHtml(count)}
+                </button>
+            `).join('');
+        }
+
+        function normalizeContactRows(rows) {
+            return rows.map((row) => ({
+                id: row.id,
+                type: 'Contact',
+                typeClass: 'tag-chip-contact',
+                name: row.name,
+                email: row.email,
+                phone: row.phone,
+                department: row.department,
+                position: '-',
+                message: row.message,
+                resumeOriginalName: '-',
+                resumeUrl: '',
+                created_at: row.created_at
+            }));
+        }
+
+        function normalizeCareerRows(rows) {
+            return rows.map((row) => ({
+                id: row.id,
+                type: 'Career',
+                typeClass: 'tag-chip-career',
+                name: row.full_name,
+                email: row.email,
+                phone: row.phone,
+                department: row.department,
+                position: row.position || '-',
+                message: row.cover_letter,
+                resumeOriginalName: row.resume_original_name || '-',
+                resumeUrl: row.resume_url ? `${apiBase}${row.resume_url}` : '',
+                created_at: row.created_at
+            }));
+        }
+
+        function renderRows(rows) {
+            totalCount.textContent = String(rows.length);
+            todayCount.textContent = String(rows.filter((item) => isToday(item.created_at)).length);
+
+            tableBody.innerHTML = '';
+            cardsBody.innerHTML = '';
+
+            if (!rows.length) {
+                tableHead.style.display = 'none';
+                emptyState.style.display = 'block';
+                emptyState.textContent = allRows.length ? 'No matching records found for your search.' : 'No form submissions yet.';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            tableHead.style.display = 'grid';
+
+            tableBody.innerHTML = rows.map((row) => `
+                <div class="table-row">
+                    <div>#${escapeHtml(row.id)}</div>
+                    <div><span class="tag-chip ${escapeHtml(row.typeClass)}">${escapeHtml(row.type)}</span></div>
+                    <div>${escapeHtml(row.name)}</div>
+                    <div>${escapeHtml(row.email)}</div>
+                    <div>${escapeHtml(row.phone)}</div>
+                    <div>${escapeHtml(row.department)}</div>
+                    <div>${escapeHtml(row.position || '-')}</div>
+                    <div class="row-message">${escapeHtml(row.message)}</div>
+                    <div>
+                        ${row.resumeUrl
+                            ? `<a class="resume-link" href="${escapeHtml(row.resumeUrl)}" target="_blank" rel="noopener">${escapeHtml(row.resumeOriginalName)}</a>`
+                            : '-'}
+                    </div>
+                    <div>${escapeHtml(formatDate(row.created_at))}</div>
+                    <div><button type="button" class="delete-btn" data-id="${escapeHtml(row.id)}" data-type="${escapeHtml(row.type.toLowerCase())}">Delete</button></div>
+                </div>
+            `).join('');
+
+            cardsBody.innerHTML = rows.map((row) => `
+                <article class="submission-card">
+                    <h3>#${escapeHtml(row.id)} - ${escapeHtml(row.name)} <span class="tag-chip ${escapeHtml(row.typeClass)}">${escapeHtml(row.type)}</span></h3>
+                    <p><strong>Email:</strong> ${escapeHtml(row.email)}</p>
+                    <p><strong>Phone:</strong> ${escapeHtml(row.phone)}</p>
+                    <p><strong>Department:</strong> ${escapeHtml(row.department)}</p>
+                    <p><strong>Position:</strong> ${escapeHtml(row.position || '-')}</p>
+                    <p><strong>Message:</strong> ${escapeHtml(row.message)}</p>
+                    <p><strong>Resume:</strong> ${row.resumeUrl ? `<a class="resume-link" href="${escapeHtml(row.resumeUrl)}" target="_blank" rel="noopener">${escapeHtml(row.resumeOriginalName)}</a>` : '-'}</p>
+                    <p><strong>Submitted:</strong> ${escapeHtml(formatDate(row.created_at))}</p>
+                    <p><button type="button" class="delete-btn" data-id="${escapeHtml(row.id)}" data-type="${escapeHtml(row.type.toLowerCase())}">Delete Request</button></p>
+                </article>
+            `).join('');
+        }
+
+        async function deleteSubmission(id, type) {
+            const numericId = Number(id);
+            if (!Number.isInteger(numericId) || numericId <= 0) {
+                alert('Invalid record selected.');
+                return;
+            }
+
+            const isCareer = type === 'career';
+            const endpoint = isCareer
+                ? `${apiBase}/api/career-submissions/${numericId}`
+                : `${apiBase}/api/contact-submissions/${numericId}`;
+            const label = isCareer ? 'career application' : 'contact request';
+
+            const confirmed = window.confirm(`Are you sure you want to delete this ${label}? This action cannot be undone.`);
+            if (!confirmed) return;
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: authHeaderValue
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Delete failed');
+                }
+
+                allRows = allRows.filter((row) => !(row.id === numericId && row.type.toLowerCase() === type));
+                applyFilter();
+            } catch (_err) {
+                alert('Unable to delete request right now. Please try again.');
+            }
+        }
+
+        function applyFilter() {
+            const query = (submissionsSearchInput.value || '').toLowerCase().trim();
+            const queryAndTypeRows = allRows.filter((row) => {
+                const matchesType = currentTypeFilter === 'all' || row.type.toLowerCase() === currentTypeFilter;
+                const searchable = `${row.type || ''} ${row.name || ''} ${row.email || ''} ${row.phone || ''} ${row.department || ''} ${row.position || ''} ${row.message || ''}`.toLowerCase();
+                const matchesQuery = !query || searchable.includes(query);
+                return matchesType && matchesQuery;
+            });
+
+            renderDailySummary(queryAndTypeRows);
+
+            const filtered = queryAndTypeRows.filter((row) => {
+                if (!currentDateFilter) return true;
+                return toDateKey(row.created_at) === currentDateFilter;
+            });
+
+            renderRows(filtered);
+        }
+
+        function setTypeFilter(type) {
+            currentTypeFilter = type;
+            typeFilterButtons.forEach((button) => {
+                const isActive = button.dataset.type === type;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+            applyFilter();
+        }
+
+        function exportCsv() {
+            if (!allRows.length) {
+                alert('No records available to export.');
+                return;
+            }
+
+            const header = ['ID', 'Type', 'Name', 'Email', 'Phone', 'Department', 'Position', 'Message', 'Resume File', 'Submitted At'];
+            const lines = [header.map(toCsvValue).join(',')];
+
+            allRows.forEach((row) => {
+                lines.push([
+                    row.id,
+                    row.type,
+                    row.name,
+                    row.email,
+                    row.phone,
+                    row.department,
+                    row.position,
+                    row.message,
+                    row.resumeOriginalName,
+                    row.created_at
+                ].map(toCsvValue).join(','));
+            });
+
+            const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `form-submissions-${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        async function loadSubmissions() {
+            loadingState.style.display = 'block';
+            errorState.style.display = 'none';
+            emptyState.style.display = 'none';
+            tableHead.style.display = 'none';
+            tableBody.innerHTML = '';
+            cardsBody.innerHTML = '';
+
+            try {
+                const [contactResponse, careerResponse] = await Promise.all([
+                    fetch(`${apiBase}/api/contact-submissions`, {
+                        headers: {
+                            Authorization: authHeaderValue
+                        }
+                    }),
+                    fetch(`${apiBase}/api/career-submissions`, {
+                        headers: {
+                            Authorization: authHeaderValue
+                        }
+                    })
+                ]);
+
+                if (contactResponse.status === 401 || careerResponse.status === 401) {
+                    sessionStorage.removeItem('dashboardAuthHeader');
+                    sessionStorage.removeItem('dashboardAuthUser');
+                    const nextParam = encodeURIComponent('form-submissions.html');
+                    window.location.href = `dashboard-login.html?next=${nextParam}`;
+                    throw new Error('Session expired');
+                }
+
+                if (!contactResponse.ok || !careerResponse.ok) {
+                    throw new Error('Failed to fetch');
+                }
+
+                const [contactPayload, careerPayload] = await Promise.all([
+                    contactResponse.json(),
+                    careerResponse.json()
+                ]);
+
+                const contactRows = Array.isArray(contactPayload.data) ? normalizeContactRows(contactPayload.data) : [];
+                const careerRows = Array.isArray(careerPayload.data) ? normalizeCareerRows(careerPayload.data) : [];
+
+                allRows = [...contactRows, ...careerRows].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+                loadingState.style.display = 'none';
+                applyFilter();
+            } catch (_error) {
+                loadingState.style.display = 'none';
+                errorState.style.display = 'block';
+                allRows = [];
+                totalCount.textContent = '0';
+                todayCount.textContent = '0';
+                errorState.textContent = 'Unable to load contact/career data. Ensure backend is running on http://localhost:4000.';
+            }
+        }
+
+        refreshBtn.addEventListener('click', loadSubmissions);
+        exportBtn.addEventListener('click', exportCsv);
+        logoutBtn.addEventListener('click', logoutDashboard);
+        submissionsSearchInput.addEventListener('input', applyFilter);
+        dateFilterInput.addEventListener('change', () => {
+            currentDateFilter = dateFilterInput.value || '';
+            applyFilter();
+        });
+        clearDateBtn.addEventListener('click', () => {
+            currentDateFilter = '';
+            dateFilterInput.value = '';
+            applyFilter();
+        });
+        dailySummaryList.addEventListener('click', (event) => {
+            const button = event.target.closest('.day-pill');
+            if (!button) return;
+            const dateValue = button.getAttribute('data-date') || '';
+            currentDateFilter = dateValue;
+            dateFilterInput.value = dateValue;
+            applyFilter();
+        });
+        tableBody.addEventListener('click', (event) => {
+            const button = event.target.closest('.delete-btn');
+            if (!button) return;
+            deleteSubmission(button.getAttribute('data-id'), button.getAttribute('data-type'));
+        });
+        cardsBody.addEventListener('click', (event) => {
+            const button = event.target.closest('.delete-btn');
+            if (!button) return;
+            deleteSubmission(button.getAttribute('data-id'), button.getAttribute('data-type'));
+        });
+        typeFilterButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                setTypeFilter(button.dataset.type || 'all');
+            });
+        });
+
+        // Strict mode: never keep dashboard login after leaving/reloading the page.
+        window.addEventListener('beforeunload', clearDashboardSession);
+
+        if (requestPageAccess()) {
+            initAutoLock();
+            loadSubmissions();
+        }
+    </script>
+    <script src="script.js" defer></script>
+</body>
+</html>
