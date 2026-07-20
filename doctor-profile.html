@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Doctor Profile - Ikram Hospital">
+    <meta name="description" content="Consultant doctor profile at Ikram Hospital with specialties, OPD hours, education, and appointment options.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     
-        <title>Doctor Profile - Ikram Hospital</title>
+        <title>Consultant Profile - Ikram Hospital</title>
 <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="canonical" href="https://ikramhospital.com/doctor-profile.html">
-    <meta property="og:title" content="Doctor Profile - Ikram Hospital">
-    <meta property="og:description" content="View specialist profile details at Ikram Hospital.">
+    <meta property="og:title" content="Consultant Profile - Ikram Hospital">
+    <meta property="og:description" content="View detailed consultant profiles, clinical focus, education, and booking options at Ikram Hospital.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ikramhospital.com/doctor-profile.html">
     <meta property="og:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Doctor Profile - Ikram Hospital">
-    <meta name="twitter:description" content="View specialist profile details at Ikram Hospital.">
+    <meta name="twitter:title" content="Consultant Profile - Ikram Hospital">
+    <meta name="twitter:description" content="View detailed consultant profiles, clinical focus, education, and booking options at Ikram Hospital.">
     <meta name="twitter:image" content="https://ikramhospital.com/images/IKRAM%20HOSPITAL%20HERO%20IMAGE.jpg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -48,7 +48,7 @@
         </div>
     </nav>
 
-    <section class="services" style="padding: 60px 0;">
+    <section class="services consultant-profile-page" style="padding: 60px 0;">
         <div class="container" id="doctorProfileContainer"></div>
     </section>
 
@@ -75,9 +75,10 @@
 
             if (!doctor) {
                 profileContainer.innerHTML = `
-                    <div class="no-results-box">
+                    <div class="consultant-profile-empty">
+                        <p class="consultant-profile-kicker">Consultant profile</p>
                         <h1 style="margin-bottom: 12px;">Doctor Profile Not Found</h1>
-                        <p style="color: var(--gray-color); margin-bottom: 20px;">Requested profile is unavailable. Please check doctors list.</p>
+                        <p style="color: var(--gray-color); margin-bottom: 20px;">Requested profile is unavailable. Please check the doctors list and choose another consultant.</p>
                         <a href="doctors.html" class="btn btn-primary">Back to Doctors</a>
                     </div>
                 `;
@@ -86,6 +87,22 @@
 
             document.title = `${doctor.name} - Ikram Hospital`;
 
+            const profileDescription = `${doctor.name} - ${doctor.specialty || 'Consultant'} at Ikram Hospital. ${doctor.bio || 'View consultant profile, OPD hours, specialties, and appointment options.'}`;
+
+            const setMetaTag = (selector, content) => {
+                const metaTag = document.querySelector(selector);
+                if (metaTag && content) {
+                    metaTag.setAttribute('content', content);
+                }
+            };
+
+            setMetaTag('meta[name="description"]', profileDescription);
+            setMetaTag('meta[property="og:title"]', `${doctor.name} - Ikram Hospital`);
+            setMetaTag('meta[property="og:description"]', profileDescription);
+            setMetaTag('meta[property="og:url"]', `${window.location.origin}${window.location.pathname}${window.location.search}`);
+            setMetaTag('meta[name="twitter:title"]', `${doctor.name} - Ikram Hospital`);
+            setMetaTag('meta[name="twitter:description"]', profileDescription);
+
             const highlights = (doctor.highlights || []).map((item) => `
                 <li><i class="fas fa-check-circle"></i> ${item}</li>
             `).join('');
@@ -93,34 +110,59 @@
             const specialties = (doctor.specialties || []).map((item) => `
                 <li><i class="fas fa-check-circle"></i> ${item}</li>
             `).join('');
+            const timing = doctor.timing || 'Mon-Sat • 9:00 AM - 6:00 PM';
+            const showTiming = !doctor.hideTiming;
+            const experience = doctor.experience || 'Consultant';
+            const educationSummary = doctor.education || 'Clinical education and specialist training details available on request.';
+            const heroSpecialty = doctor.specialty || 'Consultant Physician';
 
             profileContainer.innerHTML = `
-                <div class="about-content" style="grid-template-columns: 1fr 1fr; gap: 40px;">
-                    <div class="about-text">
-                        <div class="doctor-profile-heading-row">
-                            <h1>About ${doctor.name}</h1>
-                            ${doctor.badge ? `<span class="doctor-role-badge doctor-role-badge-profile" aria-label="${doctor.badge} badge">${doctor.badge}</span>` : ''}
+                <div class="consultant-profile-hero">
+                    <div class="consultant-profile-grid">
+                        <div class="consultant-profile-copy">
+                            <p class="consultant-profile-kicker">Consultant profile</p>
+                            <div class="doctor-profile-heading-row">
+                                <h1>${doctor.name}</h1>
+                                ${doctor.badge ? `<span class="doctor-role-badge doctor-role-badge-profile" aria-label="${doctor.badge} badge">${doctor.badge}</span>` : ''}
+                            </div>
+                            <p class="consultant-profile-summary">${doctor.bio || ''}</p>
+                            <div class="consultant-profile-actions">
+                                <a href="appointment-booking.html?doctor=${encodeURIComponent(doctor.name)}" class="btn btn-primary"><i class="fas fa-calendar-check" aria-hidden="true"></i><span>Book Appointment</span></a>
+                                <a href="doctors.html" class="btn btn-secondary"><i class="fas fa-arrow-left" aria-hidden="true"></i><span>Back to Doctors</span></a>
+                            </div>
+                            ${showTiming ? `<div class="consultant-profile-timing-strip" aria-label="OPD timing">
+                                <i class="fas fa-clock consultant-profile-timing-icon" aria-hidden="true"></i>
+                                <span class="consultant-profile-timing-label">OPD Timing</span>
+                                <span class="consultant-profile-timing-value">${timing}</span>
+                            </div>` : ''}
                         </div>
-                        <p>${doctor.bio || ''}</p>
-                        <ul class="about-highlights">${highlights}</ul>
-                        <a href="appointment-booking.html?doctor=${encodeURIComponent(doctor.name)}" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Book Appointment</a>
-                    </div>
-                    <div class="about-image">
-                        ${doctor.profileImage || doctor.image
-                            ? `<img class="doctor-profile-photo${isWhiteBackgroundProfile ? ' doctor-profile-photo-white-bg' : ''}${isAsadProfile ? ' doctor-profile-photo-asad' : ''}" src="${doctor.profileImage || doctor.image}" alt="${doctor.name}">`
-                            : `<div class="doctor-profile-photo-placeholder ${isFemaleDoctor ? 'doctor-profile-photo-placeholder-female' : ''}" aria-label="${doctor.name} photo coming soon">
-                                    <i class="fas ${isFemaleDoctor ? 'fa-user-nurse' : 'fa-user-md'}"></i>
-                                    <span>${isFemaleDoctor ? 'Female Doctor' : 'Doctor Profile'}</span>
-                                    <small>Photo Coming Soon</small>
-                               </div>`}
+                        <div class="consultant-profile-visual">
+                            <div class="about-image consultant-profile-photo-wrap">
+                                ${doctor.profileImage || doctor.image
+                                    ? `<img class="doctor-profile-photo${isWhiteBackgroundProfile ? ' doctor-profile-photo-white-bg' : ''}${isAsadProfile ? ' doctor-profile-photo-asad' : ''}" src="${doctor.profileImage || doctor.image}" alt="${doctor.name}">`
+                                    : `<div class="doctor-profile-photo-placeholder ${isFemaleDoctor ? 'doctor-profile-photo-placeholder-female' : ''}" aria-label="${doctor.name} photo coming soon">
+                                            <i class="fas ${isFemaleDoctor ? 'fa-user-nurse' : 'fa-user-md'}"></i>
+                                            <span>${isFemaleDoctor ? 'Female Doctor' : 'Doctor Profile'}</span>
+                                            <small>Photo Coming Soon</small>
+                                       </div>`}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div style="margin-top: 40px;">
-                    <h3>Specialties</h3>
-                    <ul class="about-highlights" style="list-style: none; padding: 0;">${specialties}</ul>
-                    <h3 style="margin-top: 30px;">Education & Training</h3>
-                    <p>${doctor.education || ''}</p>
-                    <a href="doctors.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Back to Doctors</a>
+
+                <div class="consultant-profile-overview">
+                    <div class="consultant-profile-section">
+                        <h3>Specialization</h3>
+                        <p>${heroSpecialty}</p>
+                    </div>
+                    <div class="consultant-profile-section">
+                        <h3>Education</h3>
+                        <p>${educationSummary}</p>
+                    </div>
+                    <div class="consultant-profile-section consultant-profile-section-wide">
+                        <h3>Services Provided</h3>
+                        <ul class="about-highlights consultant-profile-list">${specialties}</ul>
+                    </div>
                 </div>
             `;
         })();

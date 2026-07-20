@@ -141,7 +141,7 @@ section {
 .emergency-banner {
     background: var(--gradient-primary);
     color: var(--white-color);
-    padding: 12px 0;
+    padding: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -150,29 +150,43 @@ section {
     max-width: 100%;
     z-index: 1050;
     box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
-    animation: slideInUp 0.5s ease-out;
+    animation: emergencyBannerSlideDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
     transition: transform 0.22s ease-out, opacity 0.2s linear;
     will-change: transform, opacity;
-    overflow-x: clip;
+    overflow: hidden;
 }
 
 .emergency-banner + .navbar {
     top: var(--home-header-offset, 45px);
 }
 
-.emergency-content {
+.emergency-ticker {
+    overflow: hidden;
+    width: 100%;
+}
+
+.emergency-track {
     display: flex;
+    align-items: center;
+    gap: 0;
+    width: max-content;
+    animation: emergencyTickerScroll 18s linear infinite;
+    will-change: transform;
+}
+
+.emergency-content {
+    display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
     justify-content: center;
     gap: 15px;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0 16px;
+    min-width: max-content;
+    padding: 12px 28px;
     box-sizing: border-box;
     font-weight: 600;
     font-size: 15px;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .emergency-content i {
@@ -189,10 +203,40 @@ section {
 }
 
 .emergency-text {
-    flex: 1;
-    min-width: 0;
+    flex: 0 0 auto;
+    min-width: max-content;
     text-align: center;
     overflow-wrap: anywhere;
+}
+
+.emergency-ticker:hover .emergency-track {
+    animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+    .emergency-banner {
+        box-shadow: 0 2px 10px rgba(231, 76, 60, 0.28);
+    }
+
+    .emergency-track {
+        animation: emergencyTickerScroll 20s linear infinite;
+    }
+
+    .emergency-content {
+        gap: 8px;
+        padding: 9px 12px;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+    }
+
+    .emergency-content i {
+        font-size: 13px;
+    }
+
+    .emergency-text {
+        white-space: nowrap;
+        min-width: max-content;
+    }
 }
 
 @keyframes pulse {
@@ -203,6 +247,26 @@ section {
     50% {
         opacity: 0.7;
         transform: scale(1.1);
+    }
+}
+
+@keyframes emergencyTickerScroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes emergencyBannerSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -740,6 +804,88 @@ body.no-hero > section:first-of-type {
     background: var(--gradient-primary);
     padding: 6px 18px;
     border-radius: 25px;
+}
+
+/* Trust Section */
+.trust-section {
+    padding: 24px 0 82px;
+    background: linear-gradient(180deg, rgba(248, 251, 255, 0.95) 0%, rgba(255, 248, 240, 0.82) 100%);
+}
+
+.trust-heading {
+    margin-bottom: 30px;
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.trust-card {
+    background: var(--white-color);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: 22px 18px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.trust-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(255, 140, 0, 0.14);
+    border-color: rgba(255, 140, 0, 0.25);
+}
+
+.trust-card i {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 140, 0, 0.12);
+    color: var(--primary-color);
+    font-size: 18px;
+    margin-bottom: 14px;
+}
+
+.trust-card h3 {
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    color: var(--dark-color);
+}
+
+.trust-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-color);
+}
+
+@media (max-width: 1100px) {
+    .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .trust-section {
+        padding: 16px 0 60px;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .trust-card {
+        padding: 18px 16px;
+    }
+
+    .trust-card h3 {
+        font-size: 17px;
+    }
 }
 
 /* Page Hero for About */
@@ -1330,21 +1476,29 @@ body.no-hero .page-hero .hero-content p {
     width: 100%;
     height: 100%;
     display: block;
+    border-radius: inherit;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center 10%;
 }
 
 .doctor-card-photo {
     width: 100%;
     height: 100%;
     display: block;
+    border-radius: inherit;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center 10%;
 }
 
 .doctor-card-photo-asad {
-    object-position: center 9%;
-    transform: scale(1.19);
+    object-position: center 4%;
+    transform: scale(1.12);
+    transform-origin: center top;
+}
+
+.doctor-card-photo-waheedullah {
+    object-position: center 2%;
+    transform: scale(1.08);
     transform-origin: center top;
 }
 
@@ -1405,11 +1559,16 @@ body.no-hero .page-hero .hero-content p {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 10px 14px 6px;
+    padding: 10px 14px 4px;
 }
 
 .doctor-name-row h3 {
     padding: 0;
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.25;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 
 .doctor-role-badge {
@@ -1428,6 +1587,23 @@ body.no-hero .page-hero .hero-content p {
     text-transform: uppercase;
     line-height: 1;
     white-space: nowrap;
+}
+
+.doctor-role-badge-card {
+    margin: 6px auto 2px;
+    position: relative;
+    z-index: 1;
+    min-width: 84px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffb347 0%, #ff8c00 55%, #ff6b6b 100%);
+    border: 0;
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(255, 140, 0, 0.22);
+    letter-spacing: 0.7px;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 .doctor-profile-heading-row {
@@ -1454,6 +1630,8 @@ body.no-hero .page-hero .hero-content p {
     display: block;
     margin: 0 auto;
     border-radius: 22px;
+    overflow: hidden;
+    clip-path: inset(0 round 22px);
     object-fit: cover;
     object-position: center 18%;
     box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16);
@@ -1512,6 +1690,196 @@ body.no-hero .page-hero .hero-content p {
     color: #9d174d;
 }
 
+.consultant-profile-page {
+    background: linear-gradient(180deg, #f7f8fb 0%, #ffffff 100%);
+}
+
+.consultant-profile-hero {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.06), rgba(0, 176, 80, 0.05));
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+.consultant-profile-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.consultant-profile-copy {
+    padding: 10px 4px 4px;
+}
+
+.consultant-profile-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 140, 0, 0.1);
+    color: #9f4b00;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.consultant-profile-specialty {
+    margin-top: 10px;
+    color: var(--primary-color);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.consultant-profile-summary {
+    margin-top: 18px;
+    color: #445063;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 62ch;
+}
+
+.consultant-profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.consultant-profile-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 14px 22px;
+}
+
+.consultant-profile-actions .btn i {
+    font-size: 15px;
+}
+
+.consultant-profile-actions .btn span {
+    line-height: 1;
+}
+
+.consultant-profile-timing-strip {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 13px 16px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.12), rgba(0, 176, 80, 0.08));
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+.consultant-profile-timing-icon {
+    color: var(--primary-color);
+    font-size: 15px;
+}
+
+.consultant-profile-timing-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #9f4b00;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.consultant-profile-timing-value {
+    color: var(--dark-color);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+.btn.btn-secondary {
+    background: #ffffff;
+    color: var(--dark-color);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.04);
+}
+
+.btn.btn-secondary:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 140, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.consultant-profile-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.consultant-profile-photo-wrap {
+    margin: 0;
+}
+
+.consultant-profile-overview {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.consultant-profile-section {
+    padding: 22px;
+    border-radius: 22px;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.consultant-profile-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.consultant-profile-section-wide {
+    grid-column: span 2;
+}
+
+.consultant-profile-section h3 {
+    margin-bottom: 14px;
+}
+
+.consultant-profile-list {
+    margin-top: 0;
+}
+
+.consultant-profile-empty {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 36px;
+    border-radius: 24px;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    text-align: center;
+}
+
 .doctor-card .specialty {
     color: var(--primary-color);
     font-weight: 700;
@@ -1540,6 +1908,55 @@ body.no-hero .page-hero .hero-content p {
     font-size: 12px;
     line-height: 1.55;
     min-height: 0;
+}
+
+.doctor-timing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    margin: 8px 14px 2px;
+    padding: 7px 12px;
+    color: #4b5563;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+    background: rgba(255, 140, 0, 0.08);
+    border: 1px solid rgba(255, 140, 0, 0.14);
+    border-radius: 999px;
+    white-space: normal;
+}
+
+.doctor-timing i {
+    color: var(--primary-color);
+    font-size: 11px;
+}
+
+.doctor-timing span,
+.doctor-profile-timing span {
+    font-weight: 800;
+    color: var(--dark-color);
+}
+
+.doctor-profile-timing {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 140, 0, 0.1);
+    color: var(--dark-color);
+    font-size: 14px;
+    font-weight: 700;
+    white-space: normal;
+}
+
+.doctor-profile-timing i {
+    color: var(--primary-color);
 }
 
 .doctor-card .doctor-experience {
@@ -1584,6 +2001,56 @@ body.no-hero .page-hero .hero-content p {
     margin: auto auto 8px;
     text-align: center;
     justify-content: center;
+}
+
+.doctor-card-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: calc(100% - 30px);
+    margin: 12px 15px 12px;
+    padding: 11px 15px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.12), rgba(255, 107, 61, 0.12));
+    border: 1px solid rgba(255, 140, 0, 0.22);
+    color: #ffffff;
+    color: var(--dark-color);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.doctor-card-cta i {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: #ffffff;
+    font-size: 10px;
+    transition: transform 0.25s ease;
+}
+
+.doctor-card:hover .doctor-card-cta {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.18), rgba(255, 107, 61, 0.16));
+    border-color: rgba(255, 140, 0, 0.32);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.doctor-card:hover .doctor-card-cta i {
+    transform: translateX(3px);
+}
+
+.doctor-card-cta:focus-visible {
+    outline: 3px solid rgba(255, 140, 0, 0.28);
+    outline-offset: 3px;
 }
 
 .view-all {
@@ -3799,6 +4266,44 @@ footer {
     body.no-hero .services > .container > div[style*="margin-top: 40px"] li {
         text-align: left;
         line-height: 1.7;
+    }
+
+    .consultant-profile-grid,
+    .consultant-profile-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .consultant-profile-section-wide {
+        grid-column: auto;
+    }
+
+    .consultant-profile-hero {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .consultant-profile-summary {
+        font-size: 15px;
+    }
+
+    .consultant-profile-actions {
+        flex-direction: column;
+    }
+
+    .consultant-profile-actions .btn {
+        width: 100%;
+    }
+
+    .consultant-profile-timing-strip {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 14px;
+    }
+
+    .consultant-profile-section,
+    .consultant-profile-sidecard,
+    .consultant-profile-empty {
+        padding: 18px;
     }
 }
 

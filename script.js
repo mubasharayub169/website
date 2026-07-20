@@ -534,10 +534,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // Service pages: recommended doctors based on selected service
 document.addEventListener('DOMContentLoaded', () => {
     const serviceDoctorMap = {
-        'cardiology.html': ['zain-safdar', 'm-saleem-azeemi'],
-        'medical-specialist.html': ['suleman-bashir', 'm-saleem-azeemi'],
+        'cardiology.html': ['zain-safdar'],
+        'medical-specialist.html': ['suleman-bashir'],
         'respiratory-care.html': ['m-zain-ul-abideen'],
         'neurology.html': ['soban-sarwar', 'mohsin-ali-nadir', 'hamid-mukhtar-butt'],
+        'nephrology-department.html': ['usman-ashraf'],
         'orthopedics.html': ['asad-ali-sandhu'],
         'rehabilitation-services.html': ['subhan-gondal'],
         'general-surgery.html': ['muhammad-ikram', 'hassan-mahmud'],
@@ -564,6 +565,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'neurology.html': {
             heading: 'Recommended Neurologists',
             description: 'The following neurological specialists are recommended for this service.'
+        },
+        'nephrology-department.html': {
+            heading: 'Recommended Nephrology Specialist',
+            description: 'The following kidney specialist is recommended for this service.'
         },
         'orthopedics.html': {
             heading: 'Recommended Orthopedic Specialists',

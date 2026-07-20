@@ -50,8 +50,8 @@
 
     <section class="services" id="doctor-list" style="padding: 80px 0; background: var(--white-color);">
         <div class="container">
-            <h1>Our Medical Team</h1>
-            <p class="inner-page-intro">Explore detailed profiles of our doctors and choose the specialist who best fits your needs.</p>
+            <h1>Our Consultant Team</h1>
+            <p class="inner-page-intro">Explore detailed consultant profiles, clinical specialties, and OPD timings to choose the right doctor with confidence.</p>
             
             <!-- Search and Filter Section -->
             <div class="search-filter-section">
@@ -98,6 +98,9 @@
             }
             if (text.includes('neuro')) {
                 return 'Neurology';
+            }
+            if (text.includes('nephro') || text.includes('kidney') || text.includes('renal') || text.includes('dialysis')) {
+                return 'Nephrology';
             }
             if (text.includes('physio') || text.includes('physical therap') || text.includes('rehab') || text.includes('pain management')) {
                 return 'Rehabilitation Services';
@@ -156,7 +159,37 @@
         (function renderDoctorCards() {
             const doctorsGrid = document.getElementById('doctorsGrid');
             const categoryFilter = document.getElementById('categoryFilter');
-            const doctorsData = Array.isArray(window.doctorsData) ? window.doctorsData : [];
+            const doctorsDataSource = Array.isArray(window.doctorsData) ? window.doctorsData : [];
+            const doctorsData = [...doctorsDataSource].sort((a, b) => {
+                const aIsCeo = (a.badge || '').toLowerCase().includes('ceo');
+                const bIsCeo = (b.badge || '').toLowerCase().includes('ceo');
+                if (aIsCeo === bIsCeo) return 0;
+                return aIsCeo ? -1 : 1;
+            });
+
+            const secondRowSlugs = ['qazi-aadil-inaam', 'asad-ali-sandhu', 'umar-draz-tariq', 'touseef-ansar'];
+            const secondRowDoctors = secondRowSlugs
+                .map((slug) => doctorsData.find((doctor) => doctor.slug === slug))
+                .filter(Boolean);
+
+            if (secondRowDoctors.length) {
+                const remainingDoctors = doctorsData.filter((doctor) => !secondRowSlugs.includes(doctor.slug));
+                remainingDoctors.splice(4, 0, ...secondRowDoctors);
+                doctorsData.splice(0, doctorsData.length, ...remainingDoctors);
+            }
+
+            const usmanIndex = doctorsData.findIndex((doctor) => doctor.slug === 'usman-ashraf');
+            if (usmanIndex !== -1) {
+                const [usmanDoctor] = doctorsData.splice(usmanIndex, 1);
+                const targetIndex = Math.min(8, doctorsData.length);
+                doctorsData.splice(targetIndex, 0, usmanDoctor);
+            }
+
+            const hamidIndex = doctorsData.findIndex((doctor) => doctor.slug === 'hamid-mukhtar-butt');
+            const aqsaIndex = doctorsData.findIndex((doctor) => doctor.slug === 'aqsa-liaqat');
+            if (hamidIndex !== -1 && aqsaIndex !== -1) {
+                [doctorsData[hamidIndex], doctorsData[aqsaIndex]] = [doctorsData[aqsaIndex], doctorsData[hamidIndex]];
+            }
 
             if (!doctorsGrid) return;
 
@@ -183,20 +216,21 @@
                     <a href="${profileUrl}" class="doctor-card" data-name="${doctor.name}" data-specialty="${doctor.specialty}" data-category="${category}">
                         <div class="doctor-image">
                             ${hasCardPhoto
-                                ? `<img class="doctor-card-photo${isAsadPhoto ? ' doctor-card-photo-asad' : ''}" src="${doctor.image}" alt="${doctor.name}" loading="lazy" decoding="async">`
+                                ? `<img class="doctor-card-photo${isAsadPhoto ? ' doctor-card-photo-asad' : ''}${doctor.slug === 'm-waheedullah-khan' ? ' doctor-card-photo-waheedullah' : ''}" src="${doctor.image}" alt="${doctor.name}" loading="lazy" decoding="async">`
                                 : `<div class="doctor-image-placeholder ${isFemaleDoctor ? 'doctor-image-placeholder-female' : ''}" aria-label="${doctor.name} photo coming soon">
                                         <i class="fas ${isFemaleDoctor ? 'fa-user-nurse' : 'fa-user-md'}" aria-hidden="true"></i>
                                         <span>${initials}</span>
                                    </div>`}
                         </div>
+                        ${doctor.badge ? `<span class="doctor-role-badge doctor-role-badge-card" aria-label="${doctor.badge} badge">${doctor.badge}</span>` : ''}
                         <div class="doctor-name-row">
                             <h3>${doctor.name}</h3>
-                            ${doctor.badge ? `<span class="doctor-role-badge" aria-label="${doctor.badge} badge">${doctor.badge}</span>` : ''}
                         </div>
                         <p class="specialty">${primarySpecialty}</p>
                         ${secondarySpecialty ? `<p class="specialty specialty-sub">${secondarySpecialty}</p>` : ''}
                         <p class="doctor-details">${doctor.details}</p>
-                        <div class="btn btn-small">View Profile</div>
+                        ${!doctor.hideTiming ? `<p class="doctor-timing"><i class="fas fa-clock" aria-hidden="true"></i> <span>OPD Hours:</span> ${doctor.timing || 'Mon-Sat • 9:00 AM - 6:00 PM'}</p>` : ''}
+                        <div class="doctor-card-cta"><span>View Consultant Profile</span><i class="fas fa-chevron-right" aria-hidden="true"></i></div>
                     </a>
                 `;
             }).join('');
@@ -207,6 +241,7 @@
                 'Management',
                 'Cardiology',
                 'Neurology',
+                'Nephrology',
                 'Internal Medicine',
                 'General Surgery',
                 'Gastroenterology',

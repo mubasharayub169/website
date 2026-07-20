@@ -3,12 +3,12 @@ window.doctorsData = [
         slug: 'muhammad-ikram',
         name: 'Dr. Muhammad Ikram',
         badge: 'CEO',
-        specialty: 'Chief Surgeon',
-        experience: 'Chief Consultant Surgeon',
+        specialty: 'General Surgeon',
+        experience: 'CEO & Chief Consultant Surgeon',
         details: 'M.B.B.S (Pb), M.C.P.S (Surg)',
         image: 'images/dr-muhammad-ikram.png',
         profileImage: 'images/dr-muhammad-ikram.png',
-        bio: 'Dr. Muhammad Ikram serves as Chief Consultant Surgeon at Ikram Hospital, with a strong commitment to safe, ethical, and patient-focused surgical care.',
+        bio: 'Dr. Muhammad Ikram serves as CEO and Chief Consultant General Surgeon at Ikram Hospital, with a strong commitment to safe, ethical, and patient-focused surgical care.',
         highlights: [
             'General Surgical Consultation',
             'Patient-centered Surgical Planning',
@@ -31,6 +31,7 @@ window.doctorsData = [
         details: 'M.B.B.S (Pb) F.C.P.S',
         image: '',
         profileImage: '',
+        hideTiming: true,
         bio: 'Dr. M. Shoaib Ikram serves as Director at Ikram Hospital, supporting high standards of patient care, clinical quality, and responsible medical practice.',
         highlights: [
             'Clinical Leadership and Governance',
@@ -49,6 +50,7 @@ window.doctorsData = [
     {
         slug: 'suleman-bashir',
         name: 'Dr. Suleman Bashir',
+        timing: 'Mon-Sat • 9:00 AM - 7:00 PM',
         specialty: 'Medical Specialist, Hepatology & Diabetology',
         experience: '15+ Years Experience',
         details: 'MBBS, FCPS (Medicine)',
@@ -74,6 +76,7 @@ window.doctorsData = [
         name: 'Dr. Sara Zain',
         gender: 'female',
         specialty: 'Gynecologist',
+         timing: 'Mon-Sat • 11:00 AM - 6:00 PM',
         experience: '12+ Years Experience',
         details: 'MBBS, MCPS',
         image: 'images/Dr Sara Zain.jpg',
@@ -99,8 +102,8 @@ window.doctorsData = [
         specialty: 'Neurosurgeon, Pain Specialist',
         experience: '18+ Years Experience',
         details: 'MBBS (King Edward Medical College), FCPS (NS)',
-        image: '',
-        profileImage: '',
+        image: 'images/Dr Soban Sarwar Gondal.jpg',
+        profileImage: 'images/Dr Soban Sarwar Gondal.jpg',
         bio: 'Dr. Soban Sarwar provides advanced neurological care, guiding patients through diagnosis and long-term management of disorders affecting the brain, spine, and nerves.',
         highlights: [
             'Neurological Disorder Management',
@@ -123,8 +126,8 @@ window.doctorsData = [
         specialty: 'Child Specialist',
         experience: '10+ Years Experience',
         details: 'M.B.B.S., D.C.H. (Diploma in Child Health)',
-        image: '',
-        profileImage: '',
+        image: 'images/Dr Kanwal Shehzad.jpg',
+        profileImage: 'images/Dr Kanwal Shehzad.jpg',
         bio: 'Dr. Kanwal Shehzad is dedicated to child health, offering preventive care, developmental guidance, and timely management of acute and chronic pediatric conditions.',
         highlights: [
             'Child Growth and Development Monitoring',
@@ -213,10 +216,11 @@ window.doctorsData = [
         slug: 'qazi-aadil-inaam',
         name: 'Dr. Qazi Aadil Inaam',
         specialty: 'Urologist',
+         timing: 'Mon-Sat • 9:00 AM - 7:00 PM',
         experience: 'Consultant',
         details: 'M.B.B.S., M.S. Urology',
-        image: '',
-        profileImage: '',
+        image: 'images/dr qazi adil inam.jpg',
+        profileImage: 'images/dr qazi adil inam.jpg',
         bio: 'Dr. Qazi Aadil Inaam provides specialized urology and male infertility consultation with an emphasis on confidentiality, clear guidance, and effective treatment pathways.',
         highlights: [
             'Urology Consultation',
@@ -302,29 +306,6 @@ window.doctorsData = [
         education: 'B.D.S. (Pak), MClin Endo (Aus), M.P.H. (Aus), M.H.A. (Aus).'
     },
     {
-        slug: 'm-saleem-azeemi',
-        name: 'Dr. M. Saleem Azeemi',
-        specialty: 'Medical & Heart Specialist',
-        experience: 'Consultant',
-        details: 'M.B.B.S., F.C.P.S.',
-        image: '',
-        profileImage: '',
-        bio: 'Dr. M. Saleem Azeemi provides internal medicine and heart-focused consultation with a preventive and long-term care approach for adult patients.',
-        highlights: [
-            'Medical and Cardiac Assessment',
-            'Preventive Health Guidance',
-            'Chronic Disease Follow-up',
-            'Evidence-based Treatment Planning'
-        ],
-        specialties: [
-            'Internal Medicine',
-            'Heart Health Consultation',
-            'Risk Factor Management',
-            'Long-term Patient Monitoring'
-        ],
-        education: 'M.B.B.S., F.C.P.S.'
-    },
-    {
         slug: 'aqsa-liaqat',
         name: 'Dr. Aqsa Liaqat',
         gender: 'female',
@@ -377,8 +358,8 @@ window.doctorsData = [
         specialty: 'Eye Surgeon, Ophthalmology',
         experience: 'Consultant Mayo Hospital Lahore',
         details: 'MBBS, FCPS',
-        image: '',
-        profileImage: '',
+        image: 'images/dr waheedullah khan.jpg',
+        profileImage: 'images/dr waheedullah khan.jpg',
         bio: 'Dr. M. Waheedullah Khan provides comprehensive ophthalmic care as an eye specialist and consultant eye surgeon.',
         highlights: [
             'Comprehensive Eye Consultation',
@@ -585,8 +566,8 @@ window.doctorsData = [
         specialty: 'Radiologist, Ultrasound Specialist',
         experience: 'WMO ABSTH Gujrat, Ex-Registrar CMH Kharian',
         details: 'MBBS, MCPS (Radiology)',
-        image: '',
-        profileImage: '',
+        image: 'images/Dr Sadaf Omair.jpg',
+        profileImage: 'images/Dr Sadaf Omair.jpg',
         bio: 'Dr. Sadaf Omair is a radiologist and ultrasound specialist focused on accurate imaging support for timely diagnosis and treatment decisions.',
         highlights: [
             'Radiology Consultation',
@@ -631,8 +612,8 @@ window.doctorsData = [
         specialty: 'NeuroPhysician',
         experience: 'Consultant',
         details: 'NeuroPhysician',
-        image: '',
-        profileImage: '',
+        image: 'images/Dr Hamid Mukhtar Butt.jpg',
+        profileImage: 'images/Dr Hamid Mukhtar Butt.jpg',
         bio: 'Dr. Hamid Mukhtar Butt is a NeuroPhysician providing evaluation, diagnosis, and long-term management for neurological conditions with a patient-centered approach.',
         highlights: [
             'Neurology Consultation',
@@ -647,5 +628,27 @@ window.doctorsData = [
             'Neuro Follow-up Care'
         ],
         education: 'NeuroPhysician.'
+    },
+    {
+        slug: 'usman-ashraf',
+        name: 'Dr. M. Usman Ashraf',
+        specialty: 'Nephrologist',
+        experience: 'Ex-Registrar, Sheikh Zayed Hospital, Lahore',
+        details: 'MBBS, FCPS (Nephrology), MPSN, MISN',
+        image: 'images/dr usman ashraf.jpg',
+        profileImage: 'images/dr usman ashraf.jpg',
+        bio: 'Dr. M. Usman Ashraf is a Consultant Nephrologist providing focused kidney care including diagnosis, CKD management, and long-term renal monitoring. He has served as Ex-Registrar at Sheikh Zayed Hospital, Lahore.',
+        highlights: [
+            'Kidney Disease Evaluation',
+            'Chronic Kidney Disease Follow-up',
+            'Renal Risk and Blood Pressure Management'
+        ],
+        specialties: [
+            'General Nephrology',
+            'Chronic Kidney Disease Management',
+            'Renal Function Assessment',
+            'Hypertension and Kidney Health Follow-up'
+        ],
+        education: 'MBBS, FCPS (Nephrology), MPSN, MISN. Ex-Registrar, Sheikh Zayed Hospital, Lahore.'
     }
 ];
