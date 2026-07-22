@@ -1451,8 +1451,8 @@ body.no-hero .page-hero .hero-content p {
 }
 
 .doctor-image {
-    width: clamp(108px, 26vw, 138px);
-    height: clamp(108px, 26vw, 138px);
+    width: clamp(130px, 30vw, 175px);
+    height: clamp(130px, 30vw, 175px);
     margin: 18px auto 8px;
     background-size: cover;
     background-position: center;
