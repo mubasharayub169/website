@@ -21,6 +21,8 @@ window.labReportsData = [
 
     // ─── SAMPLE REPORTS (DELETE WHEN ADDING REAL ONES) ───────────────────────
     {
+        reportId: 'LAB-2026-001',
+        cnic: '35202-1234567-1',
         name: 'Ali Hassan',
         mobile: '3001234567',
         age: 35,
@@ -31,6 +33,8 @@ window.labReportsData = [
         status: 'ready'
     },
     {
+        reportId: 'LAB-2026-002',
+        cnic: '35202-2345678-2',
         name: 'Fatima Malik',
         mobile: '3012345678',
         age: 28,
@@ -41,6 +45,8 @@ window.labReportsData = [
         status: 'ready'
     },
     {
+        reportId: 'LAB-2026-003',
+        cnic: '35202-3456789-3',
         name: 'Usman Tariq',
         mobile: '3023456789',
         age: 42,
