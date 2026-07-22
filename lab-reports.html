@@ -571,7 +571,13 @@
                         var safeName = data.name || 'Patient Report';
                         var safeType = data.type || 'Lab Report';
                         var safeDoctor = data.doctor || 'Ikram Hospital';
-                        var reportStatus = String(data.reportStatus || data.statusText || responseStatus || 'pending');
+                        var reportStatus = String(data.reportStatus || data.statusText || '').toLowerCase();
+                        // If no explicit reportStatus, treat status=success with a link as ready
+                        if (!reportStatus) {
+                            reportStatus = (responseStatus === 'success' || responseStatus === 'ready') && reportLink
+                                ? 'ready'
+                                : (responseStatus === 'pending' ? 'pending' : 'pending');
+                        }
 
                         container.innerHTML = `
                             <div class="results-header">
