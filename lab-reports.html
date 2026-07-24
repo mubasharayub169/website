@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Download your lab reports online - Ikram Hospital. Enter your Report ID or CNIC to access your results.">
+    <meta name="description" content="Download your lab reports online - Ikram Hospital. Enter your Invoice ID and Age to access your results.">
     <title>Lab Reports - Ikram Hospital</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -82,49 +82,6 @@
             margin-bottom: 28px;
             font-size: 14px;
         }
-        .search-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 24px;
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 11px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            background: var(--white-color);
-            color: var(--gray-color);
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .tab-btn.active {
-            border-color: var(--primary-color);
-            background: rgba(255,140,0,0.08);
-            color: var(--primary-color);
-        }
-        .tab-btn i { margin-right: 7px; }
-        .search-input-group {
-            display: flex;
-            gap: 12px;
-        }
-        .search-input-group input {
-            flex: 1;
-            padding: 14px 18px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 15px;
-            color: var(--dark-color);
-            outline: none;
-            transition: border-color 0.3s;
-            font-family: inherit;
-        }
-        .search-input-group input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(255,140,0,0.1);
-        }
-        .search-input-group input::placeholder { color: #aaa; }
         .btn-search {
             padding: 14px 28px;
             background: var(--gradient-primary);
@@ -192,15 +149,7 @@
             box-shadow: 0 6px 25px rgba(0,0,0,0.08);
             transform: translateY(-2px);
         }
-        .report-card.pending { border-left-color: #f39c12; }
         .report-info { flex: 1; }
-        .report-id {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary-color);
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
         .report-name {
             font-size: 16px;
             font-weight: 700;
@@ -230,7 +179,6 @@
             font-weight: 600;
         }
         .status-badge.ready { background: rgba(0,176,80,0.1); color: var(--secondary-color); }
-        .status-badge.pending { background: rgba(243,156,18,0.1); color: #f39c12; }
         .btn-download {
             display: inline-flex;
             align-items: center;
@@ -251,11 +199,6 @@
             box-shadow: 0 4px 15px rgba(255,140,0,0.4);
             color: var(--white-color);
         }
-        .btn-download.disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
 
         /* ── States ── */
         .state-box {
@@ -265,7 +208,6 @@
         .state-box i { font-size: 52px; margin-bottom: 16px; display: block; }
         .state-box h3 { font-size: 20px; margin-bottom: 8px; color: var(--dark-color); }
         .state-box p { color: var(--gray-color); font-size: 15px; }
-        .state-empty i { color: #ddd; }
         .state-notfound i { color: #e74c3c; }
         .state-initial i { color: #ddd; }
 
@@ -321,12 +263,10 @@
         }
 
         @media (max-width: 600px) {
-            .search-input-group { flex-direction: column; }
             .report-card { flex-direction: column; align-items: flex-start; }
             .report-actions { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
             .lab-hero h1 { font-size: 28px; }
             .search-card { padding: 24px 18px; }
-            .search-tabs { flex-direction: column; }
         }
     </style>
 </head>
@@ -361,7 +301,7 @@
         <div class="container">
             <i class="fas fa-flask hero-icon"></i>
             <h1>Lab Reports Download</h1>
-            <p>Access and download your laboratory test results securely using your registered mobile number and age</p>
+            <p>Access and download your laboratory test results securely using your Invoice ID and Age</p>
         </div>
     </div>
 
@@ -370,28 +310,27 @@
         <div class="container">
             <div class="search-card">
                 <h2><i class="fas fa-search" style="color:var(--primary-color);margin-right:8px;"></i>Find Your Report</h2>
-                <p>Enter your registered mobile number and age to retrieve the matching PDF instantly. Reports are served directly from the website without a backend.</p>
+                <p>Enter your Invoice ID and Patient Age to retrieve your matching lab report securely.</p>
 
-                <div style="display:flex; gap:12px; margin-bottom:18px;">
-                    <div style="flex:2; position:relative;">
-                        <i class="fas fa-mobile-alt" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#bbb;font-size:16px;pointer-events:none;"></i>
-                        <input type="tel" id="inputMobile" placeholder="Registered Mobile Number (e.g. 3001234567)" maxlength="10" autocomplete="off" pattern="[0-9]*" style="width:100%;padding:15px 18px 15px 46px;border:2px solid #e8e8e8;border-radius:12px;font-size:15px;color:var(--dark-color);outline:none;background:#fafafa;font-family:inherit;transition:all .3s ease;">
-                    </div>
-                    <div style="flex:1; position:relative;">
-                        <i class="fas fa-user" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#bbb;font-size:16px;pointer-events:none;"></i>
-                        <input type="number" id="inputAge" placeholder="Age (years)" min="1" max="120" autocomplete="off" style="width:100%;padding:15px 18px 15px 46px;border:2px solid #e8e8e8;border-radius:12px;font-size:15px;color:var(--dark-color);outline:none;background:#fafafa;font-family:inherit;transition:all .3s ease;">
-                    </div>
+                <div style="position:relative; margin-bottom:18px;">
+                    <i class="fas fa-file-invoice" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#bbb;font-size:16px;pointer-events:none;"></i>
+                    <input type="text" id="inputInvoiceId" placeholder="Enter Invoice ID (e.g. INV-10025)" autocomplete="off" style="width:100%;padding:15px 18px 15px 46px;border:2px solid #e8e8e8;border-radius:12px;font-size:15px;color:var(--dark-color);outline:none;background:#fafafa;font-family:inherit;transition:all .3s ease;">
+                </div>
+
+                <div style="position:relative; margin-bottom:18px;">
+                    <i class="fas fa-user-clock" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#bbb;font-size:16px;pointer-events:none;"></i>
+                    <input type="number" id="inputAge" placeholder="Enter Patient Age (e.g. 35)" autocomplete="off" style="width:100%;padding:15px 18px 15px 46px;border:2px solid #e8e8e8;border-radius:12px;font-size:15px;color:var(--dark-color);outline:none;background:#fafafa;font-family:inherit;transition:all .3s ease;">
                 </div>
 
                 <div style="text-align:center; margin-bottom:18px;">
                     <button class="btn-search" onclick="searchReport()" style="width:100%;">
-                        <i class="fas fa-search"></i> Search My Reports
+                        <i class="fas fa-search"></i> Search Report
                     </button>
                 </div>
 
                 <p class="search-hint">
                     <i class="fas fa-lock" style="color:var(--secondary-color);"></i>
-                    <strong>Secure Access:</strong> Enter your registered mobile number and age exactly as recorded at the hospital lab. For assistance, call <a href="tel:05336054377" style="color:var(--primary-color);font-weight:700;">(053) 3605377</a>
+                    <strong>Secure Access:</strong> Enter your exact Invoice ID and Age provided at the hospital lab. For assistance, call <a href="tel:05336054377" style="color:var(--primary-color);font-weight:700;">(053) 3605377</a>
                 </p>
             </div>
         </div>
@@ -402,8 +341,8 @@
         <div id="resultsContainer">
             <div class="state-box state-initial" id="stateInitial">
                 <i class="fas fa-file-medical-alt"></i>
-                <h3>Enter Your Mobile Number &amp; Age</h3>
-                <p>Enter your registered mobile number and age above and click Search to retrieve your results.</p>
+                <h3>Enter Your Details</h3>
+                <p>Type your Invoice ID and Age above and click Search to retrieve your results.</p>
             </div>
         </div>
     </section>
@@ -432,7 +371,7 @@
                 <div class="info-card">
                     <i class="fas fa-lock"></i>
                     <h4>Privacy & Security</h4>
-                    <p>Your reports are accessible only via your registered mobile number and age. Reports are linked to your hospital registration.</p>
+                    <p>Your reports are accessible securely via your unique Invoice ID and Age linked to your hospital record.</p>
                 </div>
             </div>
         </div>
@@ -464,7 +403,7 @@
                         <li><a href="doctors.html">Doctors</a></li>
                         <li><a href="appointment-booking.html">Appointment</a></li>
                         <li><a href="lab-reports.html"><i class="fas fa-flask" style="margin-right:5px;color:var(--primary-color);"></i>Lab Reports</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -485,161 +424,76 @@
 
     <!-- Scripts -->
     <script async src="script.js"></script>
-    <script>
-        function resetResults() {
-            const container = document.getElementById('resultsContainer');
-            container.innerHTML = `
-                <div class="state-box state-initial" id="stateInitial">
-                    <i class="fas fa-file-medical-alt"></i>
-                    <h3>Enter Your Mobile Number & Age</h3>
-                    <p>Enter your registered mobile number above and click <strong>Search</strong> to access your results.</p>
-                </div>`;
-        }
-
+   <script>
         function searchReport() {
-            var mobile = document.getElementById('inputMobile').value.trim();
+            var invoiceId = document.getElementById('inputInvoiceId').value.trim();
             var age = document.getElementById('inputAge').value.trim();
-
-            var scriptURL = "https://script.google.com/macros/s/AKfycbwFnHzrt8BFJL9K4hQ11o2F2GkmuovEIH7o1mOupbcAhuKEcFCRfBQlv1oqjgW0m4Aa/exec";
+            var scriptURL = "https://script.google.com/macros/s/AKfycbwo_rmcDrMFlIb2j-3Ylm5ccmAcztWmAYhCSDg9XB0EbnA-Zpzv7ogVhlMZzhi-Ej5p/exec"; // Apna deployment URL yahan rakhein
             var container = document.getElementById('resultsContainer');
 
-            if (!mobile) { showError(container, 'Please Enter Your Mobile Number'); return; }
-            if (!age) { showError(container, 'Please Enter Your Age'); return; }
+            if (!invoiceId && !age) { 
+                showError(container, 'Please Enter Your Invoice ID and Age'); 
+                return; 
+            }
+            if (!invoiceId) { 
+                showError(container, 'Please Enter Your Invoice ID'); 
+                return; 
+            }
+            if (!age) { 
+                showError(container, 'Please Enter Patient Age'); 
+                return; 
+            }
 
             container.innerHTML = `
                 <div class="state-box state-initial">
                     <i class="fas fa-spinner fa-spin"></i>
-                    <h3>Searching Reports</h3>
-                    <p>Please wait while we verify your details.</p>
+                    <h3>Searching Report</h3>
+                    <p>Please wait while we verify your details...</p>
                 </div>`;
 
-            var url = scriptURL + "?mobile=" + encodeURIComponent(mobile) + "&age=" + encodeURIComponent(age);
-            var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-            var timeoutId = controller ? window.setTimeout(function () {
-                controller.abort();
-            }, 10000) : null;
+            var url = scriptURL + "?invoice=" + encodeURIComponent(invoiceId) + "&age=" + encodeURIComponent(age);
 
-            fetch(url, controller ? { signal: controller.signal, cache: 'no-store' } : { cache: 'no-store' })
-                .then(function (response) {
-                    return response.text().then(function (text) {
-                        return {
-                            ok: response.ok,
-                            text: text
-                        };
-                    });
-                })
-                .then(function (text) {
-                    var data;
-                    var rawText = text && typeof text.text === 'string' ? text.text.trim() : '';
-                    var normalizedText = rawText.toLowerCase();
-
-                    try {
-                        data = JSON.parse(rawText);
-                    } catch (parseError) {
-                        if (normalizedText.indexOf('pending') !== -1) {
-                            data = {
-                                status: 'pending',
-                                reportStatus: 'pending'
-                            };
-                        } else if (normalizedText.indexOf('ready') !== -1 && normalizedText.indexOf('http') !== -1) {
-                            var matchedLink = rawText.match(/https?:\/\/[^\s"'<>]+/i);
-                            data = {
-                                status: 'success',
-                                reportStatus: 'ready',
-                                link: matchedLink ? matchedLink[0] : ''
-                            };
-                        } else if (!text.ok) {
-                            throw new Error('Network response was not ok');
-                        } else {
-                            throw new Error('Invalid response from report service');
-                        }
-                    }
-
-                    var responseStatus = String(data && data.status ? data.status : '').toLowerCase();
-                    var hasMatchedReport = Boolean(
-                        data && (
-                            responseStatus === 'success' ||
-                            responseStatus === 'found' ||
-                            responseStatus === 'ready' ||
-                            responseStatus === 'pending' ||
-                            data.reportStatus ||
-                            data.name ||
-                            data.type
-                        )
-                    );
-
-                    if (hasMatchedReport) {
-                        var reportLink = data.link || data.file || '';
-                        var safeName = data.name || 'Patient Report';
-                        var safeType = data.type || 'Lab Report';
-                        var safeDoctor = data.doctor || 'Ikram Hospital';
-                        var reportStatus = String(data.reportStatus || data.statusText || '').toLowerCase();
-                        if (!reportStatus) {
-                            reportStatus = (responseStatus === 'success' || responseStatus === 'ready') && reportLink
-                                ? 'ready'
-                                : (responseStatus === 'pending' ? 'pending' : 'pending');
-                        }
-
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
                         container.innerHTML = `
                             <div class="results-header">
-                                <h3><i class="fas fa-file-alt" style="color:var(--primary-color);margin-right:8px;"></i>Report Found</h3>
-                                <span class="results-count">1 Report</span>
+                               <h3><i class="fas fa-file-alt" style="color:var(--primary-color);margin-right:8px;"></i>Report Found</h3>
+                                <span class="results-count">1 Found</span>
                             </div>
                             <div class="report-card">
                                 <div class="report-info">
-                                    <div class="report-name">${safeName}</div>
-                                    <div class="report-type"><i class="fas fa-vial" style="color:var(--primary-color);margin-right:5px;"></i>${safeType}</div>
+                                    <div class="report-name">${data.name} (${data.test})</div>
+                                    <div class="report-type"><i class="fas fa-vial" style="color:var(--primary-color);margin-right:5px;"></i>Invoice ID: ${data.invoice} | Age: ${data.age}</div>
                                     <div class="report-meta">
-                                        <span><i class="fas fa-user-md"></i> ${safeDoctor}</span>
+                                        <span><i class="fas fa-user-md"></i> Ikram Hospital</span>
                                     </div>
                                 </div>
                                 <div class="report-actions">
-                                    <span id="statusBadge" class="status-badge pending">Pending</span>
-                                    <div id="downloadBtn"></div>
+                                    <span class="status-badge ready">${data.reportStatus || 'Ready'}</span>
+                                    <div id="downloadBtn">
+                                        <a href="${data.downloadUrl}" class="btn-download" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Download PDF</a>
+                                    </div>
                                 </div>
                             </div>`;
-
-                        var statusBadge = document.getElementById('statusBadge');
-                        var downloadBtn = document.getElementById('downloadBtn');
-
-                        if (reportStatus.toLowerCase() === 'ready') {
-                            statusBadge.className = 'status-badge ready';
-                            statusBadge.innerText = 'Ready';
-                            downloadBtn.innerHTML = '<a href="' + reportLink + '" class="btn-download" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Download PDF</a>';
-                            downloadBtn.style.display = 'block';
-
-                            if (reportLink) {
-                                window.open(reportLink, '_blank', 'noopener,noreferrer');
-                            }
-                        } else {
-                            statusBadge.className = 'status-badge pending';
-                            statusBadge.innerText = 'Pending';
-                            downloadBtn.innerHTML = '<span class="btn-download disabled"><i class="fas fa-clock"></i> Link Unavailable</span>';
-                            downloadBtn.style.opacity = '0.5';
-                        }
                     } else {
                         container.innerHTML = `
                             <div class="state-box state-notfound">
-                                <i class="fas fa-times-circle"></i>
-                                <h3>No Report Found</h3>
-                                <p>Please enter a valid Mobile Number and Age.</p>
+                                <i class="fas fa-exclamation-circle" style="color:#e74c3c;"></i>
+                                <h3>Report Not Found</h3>
+                                <p>${data.message}</p>
                             </div>`;
                     }
                 })
-                .catch(function (error) {
-                    console.error('Error!', error && error.message ? error.message : error);
+                .catch(error => {
+                    console.error('Error!', error);
                     container.innerHTML = `
                         <div class="state-box state-notfound">
                             <i class="fas fa-exclamation-circle" style="color:#f39c12;"></i>
-                            <h3>Report Service Unavailable</h3>
-                            <p>The search service could not be reached right now. Please try again in a moment.</p>
-                            <p style="margin-top:12px;"><a href="${url}" target="_blank" rel="noopener noreferrer" style="color:var(--primary-color);font-weight:700;">Open report service directly</a></p>
+                            <h3>Connection Error</h3>
+                            <p>Could not connect to the server. Please try again later.</p>
                         </div>`;
-                })
-                .finally(function () {
-                    if (timeoutId) {
-                        window.clearTimeout(timeoutId);
-                    }
                 });
         }
 
@@ -655,5 +509,3 @@
             if (e.key === 'Enter') searchReport();
         });
     </script>
-</body>
-</html>
