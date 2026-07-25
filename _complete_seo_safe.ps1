@@ -110,7 +110,7 @@ foreach ($file in $htmlFiles) {
                     "@id" = "$baseUrl/#organization"
                     "name" = "Ikram Hospital"
                     "url" = $baseUrl
-                    "telephone" = "(053) 3605377"
+                    "telephone" = "(053) 3605377-78-79"
                     "address" = [ordered]@{
                         "@type" = "PostalAddress"
                         "streetAddress" = "Bhimber Road"

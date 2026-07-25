@@ -335,8 +335,8 @@ window.doctorsData = [
         specialty: 'Eye Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S.',
-        image: '',
-        profileImage: '',
+        image: '/images/dr muhammad owais.png',
+        profileImage: '/images/dr muhammad owais.png',
         bio: 'Dr. Muhammad Owais Sharif is an eye specialist and consultant eye surgeon, offering patient-centered ophthalmic evaluation and treatment planning.',
         highlights: [
             'Ophthalmology Consultation',
@@ -519,8 +519,8 @@ window.doctorsData = [
         specialty: 'Psychiatrist',
         experience: 'Head of Psychiatry Department, CMH Kharian Medical College',
         details: 'MBBS, MCPS, FCPS, CMP',
-        image: '',
-        profileImage: '',
+        image: '/images/Dr Farrukh Akhtar.jpg',
+        profileImage: '/images/Dr Farrukh Akhtar.jpg',
         bio: 'Dr. Farrukh Akhtar is a classified psychiatrist and professor with extensive clinical and academic experience in mental health care.',
         highlights: [
             'Psychiatric Assessment',
