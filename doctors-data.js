@@ -28,23 +28,23 @@ window.doctorsData = [
         name: 'Dr. M. Shoaib Ikram',
         specialty: 'Medical Director',
         experience: 'Director',
-        details: 'M.B.B.S (Pb) F.C.P.S',
+        details: 'Director at Ikram Hospital',
         image: '',
         profileImage: '',
         hideTiming: true,
         bio: 'Dr. M. Shoaib Ikram serves as Director at Ikram Hospital, supporting high standards of patient care, clinical quality, and responsible medical practice.',
-        highlights: [
-            'Clinical Leadership and Governance',
-            'Quality-focused Patient Care',
-            'Hospital Service Development',
-            'Patient-first Decision Making'
-        ],
-        specialties: [
-            'Clinical Administration',
-            'Patient Safety and Quality',
-            'Medical Service Oversight',
-            'Healthcare Operations'
-        ],
+       // highlights: [
+       //     'Clinical Leadership and Governance',
+       //     'Quality-focused Patient Care',
+       //     'Hospital Service Development',
+       //     'Patient-first Decision Making'
+       // ],
+       // specialties: [
+       //     'Clinical Administration',
+       //     'Patient Safety and Quality',
+       //     'Medical Service Oversight',
+       //     'Healthcare Operations'
+       // ],
         education: 'M.B.B.S (Pb), F.C.P.S.'
     },
     {
@@ -335,8 +335,8 @@ window.doctorsData = [
         specialty: 'Eye Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S.',
-        image: '/images/dr muhammad owais.png',
-        profileImage: '/images/dr muhammad owais.png',
+        image: '',
+        profileImage: '',
         bio: 'Dr. Muhammad Owais Sharif is an eye specialist and consultant eye surgeon, offering patient-centered ophthalmic evaluation and treatment planning.',
         highlights: [
             'Ophthalmology Consultation',
