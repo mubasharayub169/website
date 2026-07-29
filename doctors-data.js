@@ -519,8 +519,8 @@ window.doctorsData = [
         specialty: 'Psychiatrist',
         experience: 'Head of Psychiatry Department, CMH Kharian Medical College',
         details: 'MBBS, MCPS, FCPS, CMP',
-        image: '/images/dr farrukh Akhtar.jpg',
-        profileImage: '/images/Dr Farrukh Akhtar.jpg',
+        image: '/images/dr farrukh akhtar.jpg',
+        profileImage: '/images/dr farrukh akhtar.jpg',
         bio: 'Dr. Farrukh Akhtar is a classified psychiatrist and professor with extensive clinical and academic experience in mental health care.',
         highlights: [
             'Psychiatric Assessment',
