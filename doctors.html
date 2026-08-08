@@ -168,16 +168,20 @@
                 return aIsCeo ? -1 : 1;
             });
 
-            const secondRowSlugs = ['qazi-aadil-inaam', 'asad-ali-sandhu', 'umar-draz-tariq', 'touseef-ansar'];
-            const secondRowDoctors = secondRowSlugs
-                .map((slug) => doctorsData.find((doctor) => doctor.slug === slug))
-                .filter(Boolean);
+            const swapDoctorToIndex = (slug, targetIndex) => {
+                const fromIndex = doctorsData.findIndex((doctor) => doctor.slug === slug);
+                if (fromIndex === -1) return;
+                const safeTarget = Math.max(0, Math.min(targetIndex, doctorsData.length - 1));
+                if (fromIndex === safeTarget) return;
+                [doctorsData[fromIndex], doctorsData[safeTarget]] = [doctorsData[safeTarget], doctorsData[fromIndex]];
+            };
 
-            if (secondRowDoctors.length) {
-                const remainingDoctors = doctorsData.filter((doctor) => !secondRowSlugs.includes(doctor.slug));
-                remainingDoctors.splice(4, 0, ...secondRowDoctors);
-                doctorsData.splice(0, doctorsData.length, ...remainingDoctors);
-            }
+            const swapDoctorsBySlug = (firstSlug, secondSlug) => {
+                const firstIndex = doctorsData.findIndex((doctor) => doctor.slug === firstSlug);
+                const secondIndex = doctorsData.findIndex((doctor) => doctor.slug === secondSlug);
+                if (firstIndex === -1 || secondIndex === -1 || firstIndex === secondIndex) return;
+                [doctorsData[firstIndex], doctorsData[secondIndex]] = [doctorsData[secondIndex], doctorsData[firstIndex]];
+            };
 
             const usmanIndex = doctorsData.findIndex((doctor) => doctor.slug === 'usman-ashraf');
             if (usmanIndex !== -1) {
@@ -186,11 +190,34 @@
                 doctorsData.splice(targetIndex, 0, usmanDoctor);
             }
 
-            const hamidIndex = doctorsData.findIndex((doctor) => doctor.slug === 'hamid-mukhtar-butt');
             const aqsaIndex = doctorsData.findIndex((doctor) => doctor.slug === 'aqsa-liaqat');
-            if (hamidIndex !== -1 && aqsaIndex !== -1) {
-                [doctorsData[hamidIndex], doctorsData[aqsaIndex]] = [doctorsData[aqsaIndex], doctorsData[hamidIndex]];
+            const subhanIndex = doctorsData.findIndex((doctor) => doctor.slug === 'subhan-gondal');
+            if (aqsaIndex !== -1 && subhanIndex !== -1) {
+                [doctorsData[aqsaIndex], doctorsData[subhanIndex]] = [doctorsData[subhanIndex], doctorsData[aqsaIndex]];
             }
+
+            const sulemanIndex = doctorsData.findIndex((doctor) => doctor.slug === 'suleman-bashir');
+            if (sulemanIndex !== -1) {
+                const [sulemanDoctor] = doctorsData.splice(sulemanIndex, 1);
+                const targetIndex = Math.min(2, doctorsData.length);
+                doctorsData.splice(targetIndex, 0, sulemanDoctor);
+            }
+
+            const tahirIndex = doctorsData.findIndex((doctor) => doctor.slug === 'tahir-ayub');
+            if (tahirIndex !== -1) {
+                const [tahirDoctor] = doctorsData.splice(tahirIndex, 1);
+                const targetIndex = Math.min(12, doctorsData.length);
+                doctorsData.splice(targetIndex, 0, tahirDoctor);
+            }
+
+            swapDoctorToIndex('qazi-aadil-inaam', 3);
+            swapDoctorToIndex('kanwal-shehzad', 4);
+            swapDoctorToIndex('umar-draz-tariq', 5);
+            swapDoctorToIndex('asad-ali-sandhu', 6);
+            swapDoctorToIndex('touseef-ansar', 7);
+            swapDoctorToIndex('barjees-mahmood-qureshi', doctorsData.length - 1);
+            swapDoctorsBySlug('sara-zain', 'syed-mohsin-raza');
+            swapDoctorsBySlug('soban-sarwar', 'hassan-mahmud');
 
             if (!doctorsGrid) return;
 

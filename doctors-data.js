@@ -48,6 +48,54 @@ window.doctorsData = [
         education: 'M.B.B.S (Pb), F.C.P.S.'
     },
     {
+        slug: 'tahir-ayub',
+        name: 'Dr. Tahir Ayub',
+        timing: 'Mon-Sat • 9:00 AM - 6:00 PM',
+        specialty: 'General Plastic and Cosmetics Surgeon',
+        experience: 'Consultant Plastic & Cosmetic Surgeon',
+        details: 'MBBS, MCPS, FCPS, CGM H (Taiwan), VSCFS, FICIS (USA)',
+        image: '',
+        profileImage: '',
+        bio: 'Dr. Tahir Ayub is a consultant general plastic and cosmetics surgeon, focused on safe surgical care and personalized treatment planning.',
+        highlights: [
+            'Plastic and Cosmetic Surgery Consultation',
+            'Patient-focused Surgical Planning',
+            'Pre-operative and Post-operative Guidance',
+            'Safe and Evidence-based Surgical Care'
+        ],
+        specialties: [
+            'General Plastic Surgery',
+            'Cosmetic Surgery',
+            'Reconstructive Procedure Planning',
+            'Surgical Follow-up Care'
+        ],
+        education: 'MBBS, MCPS, FCPS, CGM H (Taiwan), VSCFS, FICIS (USA).'
+    },
+    {
+        slug: 'barjees-mahmood-qureshi',
+        name: 'Dr. Barjees Mahmood Qureshi',
+        timing: 'Mon-Sat • 9:00 AM - 6:00 PM',
+        specialty: 'Specialist in Anesthesia',
+        experience: 'Consultant Anesthetist',
+        details: 'MBBS, DA (Punjab)',
+        image: '',
+        profileImage: '',
+        bio: 'Dr. Barjees Mahmood Qureshi is a specialist in anesthesia focused on safe perioperative care, patient monitoring, and evidence-based anesthesia planning.',
+        highlights: [
+            'Pre-anesthesia Evaluation',
+            'Intraoperative Anesthesia Care',
+            'Postoperative Monitoring and Pain Guidance',
+            'Patient Safety-focused Clinical Practice'
+        ],
+        specialties: [
+            'General Anesthesia',
+            'Perioperative Care',
+            'Anesthesia Risk Assessment',
+            'Postoperative Recovery Support'
+        ],
+        education: 'MBBS, DA (Punjab).'
+    },
+    {
         slug: 'suleman-bashir',
         name: 'Dr. Suleman Bashir',
         timing: 'Mon-Sat • 9:00 AM - 7:00 PM',
