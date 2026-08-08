@@ -54,8 +54,8 @@ window.doctorsData = [
         specialty: 'General Plastic and Cosmetics Surgeon',
         experience: 'Consultant Plastic & Cosmetic Surgeon',
         details: 'MBBS, MCPS, FCPS, CGM H (Taiwan), VSCFS, FICIS (USA)',
-        image: '',
-        profileImage: '',
+        image: 'images/dr tahir ayub.jpg',
+        profileImage: 'images/dr tahir ayub.jpg',
         bio: 'Dr. Tahir Ayub is a consultant general plastic and cosmetics surgeon, focused on safe surgical care and personalized treatment planning.',
         highlights: [
             'Plastic and Cosmetic Surgery Consultation',
@@ -220,8 +220,8 @@ window.doctorsData = [
         specialty: 'Pediatric Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S.',
-        image: '',
-        profileImage: '',
+        image: 'images/dr hassan mahmud.jpg',
+        profileImage: 'images/dr hassan mahmud.jpg',
         bio: 'Dr. Hassan Mahmud is a consultant pediatric surgeon providing surgical care for infants, children, and adolescents with a compassionate family-focused approach.',
         highlights: [
             'Pediatric Surgical Consultation',
@@ -290,8 +290,8 @@ window.doctorsData = [
         specialty: 'Gastroenterologist & Hepatologist',
         experience: 'Consultant',
         details: 'M.B.B.S. (Gold Medalist), F.C.P.S. (Medicine), F.C.P.S. (Gastroenterology)',
-        image: '',
-        profileImage: '',
+        image: 'images/dr mujahid israr.jpg',
+        profileImage: 'images/dr mujahid israr.jpg',
         bio: 'Dr. Mujahid Israr is a gastroenterologist and hepatologist with advanced clinical training in digestive and liver disorders, offering comprehensive, evidence-based care.',
         highlights: [
             'Digestive Disease Management',
@@ -383,8 +383,8 @@ window.doctorsData = [
         specialty: 'Eye Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S.',
-        image: '',
-        profileImage: '',
+        image: '/images/dr muhammad owais.png',
+        profileImage: '/images/dr muhammad owais.png',
         bio: 'Dr. Muhammad Owais Sharif is an eye specialist and consultant eye surgeon, offering patient-centered ophthalmic evaluation and treatment planning.',
         highlights: [
             'Ophthalmology Consultation',
