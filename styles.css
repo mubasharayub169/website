@@ -1066,6 +1066,16 @@ body.no-hero .page-hero .hero-content p {
     transform: scale(1.02);
 }
 
+.recommended-doctors {
+    margin-top: 36px;
+}
+
+.recommended-doctors h3 {
+    margin: 0 0 18px;
+    color: var(--dark-color);
+    font-size: 24px;
+}
+
 .about-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));

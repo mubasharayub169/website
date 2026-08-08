@@ -706,5 +706,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// FAQ Toggle Function for Homepage and other pages
+function toggleFAQ(element) {
+    const faqItem = element.closest('.faq-item');
+    const answer = faqItem.querySelector('.faq-answer');
+    const icon = element.querySelector('.fa-chevron-down');
+    const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+    
+    // Close all other FAQs
+    document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== faqItem) {
+            const otherAnswer = item.querySelector('.faq-answer');
+            const otherIcon = item.querySelector('.fa-chevron-down');
+            otherAnswer.style.maxHeight = '0';
+            if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+        }
+    });
+    
+    // Toggle current FAQ
+    if (isOpen) {
+        answer.style.maxHeight = '0';
+        icon.style.transform = 'rotate(0deg)';
+    } else {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
+
 // End of file
 
