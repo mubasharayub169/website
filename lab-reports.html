@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"MedicalOrganization","@id":"https://ikramhospital.com/#organization","name":"Ikram Hospital","url":"https://ikramhospital.com","telephone":"(053) 3605377","address":{"@type":"PostalAddress","streetAddress":"Bhimber Road","addressLocality":"Gujrat","addressCountry":"PK"}},{"@type":"WebSite","@id":"https://ikramhospital.com/#website","url":"https://ikramhospital.com","name":"Ikram Hospital","publisher":{"@id":"https://ikramhospital.com/#organization"}},{"@type":"WebPage","name":"Lab Reports - Ikram Hospital","url":"https://ikramhospital.com/lab-reports.html","description":"Download your lab reports online - Ikram Hospital. Enter your Invoice ID and Age to access your results.","isPartOf":{"@id":"https://ikramhospital.com/#website"},"about":{"@id":"https://ikramhospital.com/#organization"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"MedicalOrganization","@id":"https://ikramhospital.com/#organization","name":"Ikram Hospital","url":"https://ikramhospital.com","telephone":"(053) 3605377","address":{"@type":"PostalAddress","streetAddress":"Bhimber Road","addressLocality":"Gujrat","addressCountry":"PK"}},{"@type":"WebSite","@id":"https://ikramhospital.com/#website","url":"https://ikramhospital.com","name":"Ikram Hospital","publisher":{"@id":"https://ikramhospital.com/#organization"}},{"@type":"WebPage","name":"Lab Reports - Ikram Hospital","url":"https://ikramhospital.com/lab-reports.html","description":"Download your lab reports online - Ikram Hospital. Enter your Bill No and Age to access your results.","isPartOf":{"@id":"https://ikramhospital.com/#website"},"about":{"@id":"https://ikramhospital.com/#organization"}}]}</script>
     <style>
         /* ── Lab Reports Page Styles ── */
         .lab-hero {
@@ -314,7 +314,7 @@
         <div class="container">
             <i class="fas fa-flask hero-icon"></i>
             <h1>Lab Reports Download</h1>
-            <p>Access and download your laboratory test results securely using your Invoice ID and Age</p>
+            <p>Access and download your laboratory test results securely using your Bill No and Age</p>
         </div>
     </div>
 
@@ -323,11 +323,11 @@
         <div class="container">
             <div class="search-card">
                 <h2><i class="fas fa-search" style="color:var(--primary-color);margin-right:8px;"></i>Find Your Report</h2>
-                <p>Enter your Invoice ID and Patient Age to retrieve your matching lab report securely.</p>
+                <p>Enter your Bill No and Patient Age to retrieve your matching lab report securely.</p>
 
                 <div style="position:relative; margin-bottom:18px;">
                     <i class="fas fa-file-invoice" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#bbb;font-size:16px;pointer-events:none;"></i>
-                    <input type="text" id="inputInvoiceId" placeholder="Enter Invoice ID (Invoice ID is mentioned on Reciept)" autocomplete="off" style="width:100%;padding:15px 18px 15px 46px;border:2px solid #e8e8e8;border-radius:12px;font-size:15px;color:var(--dark-color);outline:none;background:#fafafa;font-family:inherit;transition:all .3s ease;">
+                    <input type="text" id="inputInvoiceId" placeholder="Enter Bill No (Bill No is mentioned on Reciept)" autocomplete="off" style="width:100%;padding:15px 18px 15px 46px;border:2px solid #e8e8e8;border-radius:12px;font-size:15px;color:var(--dark-color);outline:none;background:#fafafa;font-family:inherit;transition:all .3s ease;">
                 </div>
 
                 <div style="position:relative; margin-bottom:18px;">
@@ -343,7 +343,7 @@
 
                 <p class="search-hint">
                     <i class="fas fa-lock" style="color:var(--secondary-color);"></i>
-                    <strong>Secure Access:</strong> Enter your exact Invoice ID and Age provided on the hospital Reciept. For assistance, call <a href="tel:0533605377" style="color:var(--primary-color);font-weight:700;">(053) 3605377</a>
+                    <strong>Secure Access:</strong> Enter your exact Bill No and Age provided on the hospital Reciept. For assistance, call <a href="tel:0533605377" style="color:var(--primary-color);font-weight:700;">(053) 3605377</a>
                 </p>
             </div>
         </div>
@@ -355,7 +355,7 @@
             <div class="state-box state-initial" id="stateInitial">
                 <i class="fas fa-file-medical-alt"></i>
                 <h3>Enter Your Details</h3>
-                <p>Type your Invoice ID and Age above and click Search to retrieve your results.</p>
+                <p>Type your Bill No and Age above and click Search to retrieve your results.</p>
             </div>
         </div>
     </section>
@@ -384,7 +384,7 @@
                 <div class="info-card">
                     <i class="fas fa-lock"></i>
                     <h4>Privacy & Security</h4>
-                    <p>Your reports are accessible securely via your unique Invoice ID and Age linked to your hospital record.</p>
+                    <p>Your reports are accessible securely via your unique Bill No and Age linked to your hospital record.</p>
                 </div>
             </div>
         </div>
@@ -445,11 +445,11 @@
             var container = document.getElementById('resultsContainer');
 
             if (!invoiceId && !age) { 
-                showError(container, 'Please Enter Your Invoice ID and Age'); 
+                showError(container, 'Please Enter Your Bill No and Age');
                 return; 
             }
             if (!invoiceId) { 
-                showError(container, 'Please Enter Your Invoice ID'); 
+                showError(container, 'Please Enter Your Bill No');
                 return; 
             }
             if (!age) { 
@@ -478,7 +478,7 @@
                             <div class="report-card">
                                 <div class="report-info">
                                     <div class="report-name">${data.name} (${data.test})</div>
-                                    <div class="report-type"><i class="fas fa-vial" style="color:var(--primary-color);margin-right:5px;"></i>Invoice ID: ${data.invoice} | Age: ${data.age}</div>
+                                    <div class="report-type"><i class="fas fa-vial" style="color:var(--primary-color);margin-right:5px;"></i>Bill No: ${data.invoice} | Age: ${data.age}</div>
                                     <div class="report-meta">
                                         <span><i class="fas fa-user-md"></i> Ikram Hospital</span>
                                     </div>
