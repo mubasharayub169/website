@@ -2766,6 +2766,17 @@ body.no-hero .page-hero .hero-content p {
     font-size: 14px;
 }
 
+.footer-credit-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-credit-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
 /* Insurance Partners Section */
 .insurance-partners {
     background: linear-gradient(135deg, rgba(255, 140, 0, 0.05) 0%, rgba(0, 176, 80, 0.05) 100%);
