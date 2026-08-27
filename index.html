@@ -332,6 +332,36 @@
         </div>
     </section>
 
+    <!-- Hospital Management Section -->
+    <section class="about executive-message-section management-message-section">
+        <div class="container">
+            <div class="about-card executive-message-card management-message-card">
+                <div class="about-content executive-message-layout">
+                    <div class="about-image executive-profile">
+                        <img src="images/bilal saleemi.jpg" alt="HR Bilal Saleemi" class="executive-photo" loading="lazy" decoding="async">
+                        <div class="executive-meta">
+                            <strong class="executive-name">HR Bilal Saleemi</strong>
+                            <span class="executive-role">Human Resources</span>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h2 class="executive-title">Hospital Management</h2>
+                        <p class="executive-copy">HR Bilal Saleemi supports the hospital team through people-focused administration, professional development, and a positive workplace culture.</p>
+                        <ul class="about-highlights management-qualifications">
+                            <li><i class="fas fa-graduation-cap"></i> Masters in Political Science (University of Sargodha)</li>
+                            <li><i class="fas fa-laptop-code"></i> Post Graduate Diploma in Computer Science (NK Fact Lahore)</li>
+                            <li><i class="fas fa-hospital-user"></i> Diploma in Healthcare and Lean Hospital Management (Pakistan Institute of Management Sciences)</li>
+                        </ul>
+                        <div class="executive-signoff">
+                            <strong class="executive-name">HR Bilal Saleemi</strong>
+                            <span class="executive-role executive-role-small">Human Resources, Ikram Hospital</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Departments Section -->
     <section id="departments" class="departments">
         <div class="container">
@@ -527,20 +557,22 @@
 
     <script src="doctors-data.js"></script>
     <script>
-        (function renderHomeDoctorCards() {
-            const homeDoctorsGrid = document.getElementById('homeDoctorsGrid');
+        (function renderHomeProfileCards() {
             const doctorsData = Array.isArray(window.doctorsData) ? window.doctorsData : [];
 
-            if (!homeDoctorsGrid || !doctorsData.length) return;
+            if (!doctorsData.length) return;
 
-            const homepageDoctorSequence = ['muhammad-ikram', 'm-shoaib-ikram', 'suleman-bashir', 'qazi-aadil-inaam'];
-            const doctorsToRender = homepageDoctorSequence
-                .map((slug) => doctorsData.find((doctor) => doctor.slug === slug))
-                .filter(Boolean);
+            const renderCards = (gridId, profileSequence) => {
+                const profileGrid = document.getElementById(gridId);
+                if (!profileGrid) return;
 
-            if (!doctorsToRender.length) return;
+                const profilesToRender = profileSequence
+                    .map((slug) => doctorsData.find((doctor) => doctor.slug === slug))
+                    .filter(Boolean);
 
-            homeDoctorsGrid.innerHTML = doctorsToRender.map((doctor) => {
+                if (!profilesToRender.length) return;
+
+                profileGrid.innerHTML = profilesToRender.map((doctor) => {
                 const profileUrl = doctor.slug
                     ? `doctor-profile.html?slug=${encodeURIComponent(doctor.slug)}`
                     : (doctor.profile || '#');
@@ -577,7 +609,10 @@
                         <div class="btn btn-small">View Profile</div>
                     </a>
                 `;
-            }).join('');
+                }).join('');
+            };
+
+            renderCards('homeDoctorsGrid', ['muhammad-ikram', 'm-shoaib-ikram', 'suleman-bashir', 'qazi-aadil-inaam']);
         })();
     </script>
     <script src="script.js" defer></script>

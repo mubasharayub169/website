@@ -1307,6 +1307,14 @@ body.no-hero .page-hero .hero-content p {
     padding: 100px 0;
 }
 
+.management-message-card {
+    background: linear-gradient(135deg, #fffaf3 0%, #ffffff 52%, #f3f8fb 100%);
+}
+
+.management-qualifications {
+    margin-top: 18px;
+}
+
 /* Search and Filter Section */
 .search-filter-section {
     display: grid;
