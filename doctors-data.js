@@ -436,7 +436,7 @@ window.doctorsData = [
         education: 'MBBS, FCPS. Designation: Consultant Mayo Hospital Lahore.'
     },
     {
-        slug: 'touseef-ansar'
+        slug: 'touseef-ansar',
         name: 'Dr. Touseef Ansar',
         timing: 'Mon-Sat • 10:00 AM - 12:00 PM & 3:00 PM - 7:00 PM | Sun • 10:00 AM - 1:00 PM',
         specialty: 'Dermatologist, Laser & Cosmetic Care',
