@@ -116,6 +116,18 @@
             const experience = doctor.experience || 'Consultant';
             const educationSummary = doctor.education || 'Clinical education and specialist training details available on request.';
             const heroSpecialty = doctor.specialty || 'Consultant Physician';
+            const showProcedureGallery = doctor.slug === 'touseef-ansar';
+            const procedureImages = Array.isArray(doctor.procedureImages) ? doctor.procedureImages : [];
+            const procedureSlides = procedureImages.map((item, index) => {
+                const image = typeof item === 'string' ? { src: item } : item;
+                const caption = image.caption || `Procedure ${index + 1}`;
+                return `
+                    <figure class="consultant-procedure-slide">
+                        <img src="${image.src}" alt="${doctor.name} - ${caption}" loading="lazy" decoding="async">
+                        <figcaption>${caption}</figcaption>
+                    </figure>
+                `;
+            }).join('');
 
             profileContainer.innerHTML = `
                 <div class="consultant-profile-hero">
@@ -128,8 +140,8 @@
                             </div>
                             <p class="consultant-profile-summary">${doctor.bio || ''}</p>
                             <div class="consultant-profile-actions">
-                                <!-- <a href="appointment-booking.html?doctor=${encodeURIComponent(doctor.name)}" class="btn btn-primary"><i class="fas fa-calendar-check" aria-hidden="true"></i><span>Book Appointment</span></a> -->
-                                <a href="doctors.html" class="btn btn-primary"><i class="fas fa-arrow-left" aria-hidden="true"></i><span>Back to Doctors</span></a>
+                                <a href="appointment-booking.html?doctor=${encodeURIComponent(doctor.slug)}" class="btn btn-primary"><i class="fas fa-calendar-check" aria-hidden="true"></i><span>Book Appointment</span></a>
+                                <a href="doctors.html" class="btn btn-secondary"><i class="fas fa-arrow-left" aria-hidden="true"></i><span>Back to Doctors</span></a>
                             </div>
                             ${showTiming ? `<div class="consultant-profile-timing-strip" aria-label="OPD timing">
                                 <i class="fas fa-clock consultant-profile-timing-icon" aria-hidden="true"></i>
@@ -164,8 +176,43 @@
                         <h3>Services Provided</h3>
                         <ul class="about-highlights consultant-profile-list">${specialties}</ul>
                     </div>
+                    ${showProcedureGallery ? `
+                        <section class="consultant-profile-section consultant-procedure-gallery-card" aria-labelledby="procedure-gallery-title">
+                            <div class="consultant-procedure-gallery-header">
+                                <h3 id="procedure-gallery-title">Procedure Gallery</h3>
+                                ${procedureImages.length > 1 ? `
+                                    <div class="consultant-procedure-gallery-controls">
+                                        <button type="button" class="consultant-procedure-gallery-button" data-gallery-direction="previous" aria-label="Previous procedure image" title="Previous image">
+                                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="consultant-procedure-gallery-button" data-gallery-direction="next" aria-label="Next procedure image" title="Next image">
+                                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            ${procedureImages.length ? `
+                                <div class="consultant-procedure-gallery" aria-label="Procedure images">
+                                    ${procedureSlides}
+                                </div>
+                            ` : `
+                                <div class="consultant-procedure-gallery-empty">
+                                    <i class="fas fa-images" aria-hidden="true"></i>
+                                    <p>Procedure photos coming soon</p>
+                                </div>
+                            `}
+                        </section>
+                    ` : ''}
                 </div>
             `;
+
+            const procedureGallery = profileContainer.querySelector('.consultant-procedure-gallery');
+            profileContainer.querySelectorAll('[data-gallery-direction]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const direction = button.dataset.galleryDirection === 'next' ? 1 : -1;
+                    procedureGallery.scrollBy({ left: procedureGallery.clientWidth * direction, behavior: 'smooth' });
+                });
+            });
         })();
     </script>
     <script src="script.js" defer></script>

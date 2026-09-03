@@ -394,8 +394,8 @@ window.doctorsData = [
         specialty: 'Eye Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S.',
-        image: 'images/dr muhammad owais.png',
-        profileImage: 'images/dr muhammad owais.png',
+        image: 'images/dr muhammad owais.PNG',
+        profileImage: 'images/dr muhammad owais.PNG',
         bio: 'Dr. Muhammad Owais Sharif is an eye specialist and consultant eye surgeon, offering patient-centered ophthalmic evaluation and treatment planning.',
         highlights: [
             'Ophthalmology Consultation',
@@ -457,6 +457,7 @@ window.doctorsData = [
             'Laser Skin Procedures',
             'Aesthetic Skin Care'
         ],
+        procedureImages: Array.from({ length: 29 }, (_, index) => `images/dr touseef procedures/procedure image (${index + 1}).jpeg`),
         education: 'MBBS (Pb), MSc-PHM (Japan), DCDD (Bangkok/Japan).'
     },
     {
