@@ -1888,8 +1888,28 @@ body.no-hero .page-hero .hero-content p {
     margin-top: 0;
 }
 
+.consultant-profile-services-with-gallery .consultant-profile-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: 390px;
+    column-gap: 18px;
+    padding-right: 10px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 140, 0, 0.55) transparent;
+}
+
 .consultant-procedure-gallery-card {
     min-width: 0;
+    align-self: start;
+}
+
+@media (max-width: 768px) {
+    .consultant-profile-services-with-gallery .consultant-profile-list {
+        grid-template-columns: 1fr;
+        max-height: 360px;
+    }
 }
 
 .consultant-procedure-gallery-header {
