@@ -2,6 +2,7 @@ window.doctorsData = [
     {
         slug: 'muhammad-ikram',
         name: 'Dr. Muhammad Ikram',
+        timing: 'Mon-Sat • 12:00 PM - 4:00 PM',
         badge: 'CEO',
         specialty: 'General Surgeon',
         experience: 'CEO & Chief Consultant Surgeon',
@@ -50,7 +51,7 @@ window.doctorsData = [
     {
         slug: 'tahir-ayub',
         name: 'Dr. Tahir Ayub',
-        timing: 'Mon-Sat • 9:00 AM - 6:00 PM',
+        hideTiming: true,
         specialty: 'General Plastic and Cosmetics Surgeon',
         experience: 'Consultant Plastic & Cosmetic Surgeon',
         details: 'MBBS, MCPS, FCPS, CGM H (Taiwan), VSCFS, FICIS (USA)',
@@ -74,7 +75,7 @@ window.doctorsData = [
     {
         slug: 'barjees-mahmood-qureshi',
         name: 'Dr. Barjees Mahmood Qureshi',
-        timing: 'Mon-Sat • 9:00 AM - 6:00 PM',
+        hideTiming: true,
         specialty: 'Specialist in Anesthesia',
         experience: 'Consultant Anesthetist',
         details: 'MBBS, DA (Punjab)',
@@ -98,7 +99,7 @@ window.doctorsData = [
     {
         slug: 'suleman-bashir',
         name: 'Dr. Suleman Bashir',
-        timing: 'Mon-Sat • 9:00 AM - 7:00 PM',
+        timing: 'Mon-Sat • 3:00 PM - 7:00 PM',
         specialty: 'Medical Specialist, Hepatology & Diabetology',
         experience: '15+ Years Experience',
         details: 'MBBS, FCPS (Medicine)',
@@ -124,7 +125,7 @@ window.doctorsData = [
         name: 'Dr. Sara Zain',
         gender: 'female',
         specialty: 'Gynecologist',
-         timing: 'Mon-Sat • 11:00 AM - 6:00 PM',
+        timing: 'Mon-Sat • 1:00 PM - 4:00 PM',
         experience: '12+ Years Experience',
         details: 'MBBS, MCPS',
         image: 'images/Dr Sara Zain.jpg',
@@ -147,6 +148,7 @@ window.doctorsData = [
     {
         slug: 'soban-sarwar',
         name: 'Dr. Soban Sarwar Gondal',
+        timing: 'Sat • 6:00 PM - 9:00 PM | Sun • 9:00 AM - 2:00 PM',
         specialty: 'Neurosurgeon, Pain Specialist',
         experience: '18+ Years Experience',
         details: 'MBBS (King Edward Medical College), FCPS (NS)',
@@ -171,6 +173,7 @@ window.doctorsData = [
         slug: 'kanwal-shehzad',
         name: 'Dr. Kanwal Shehzad',
         gender: 'female',
+        timing: 'Mon-Sat • 10:00 AM - 6:00 PM',
         specialty: 'Child Specialist',
         experience: '10+ Years Experience',
         details: 'M.B.B.S., D.C.H. (Diploma in Child Health)',
@@ -194,6 +197,7 @@ window.doctorsData = [
     {
         slug: 'syed-mohsin-raza',
         name: 'Dr. Syed Mohsin Raza',
+        hideTiming: true,
         specialty: 'Oncologist',
         experience: 'Consultant',
         details: 'M.B.B.S., M.S. (Oncology)',
@@ -217,6 +221,7 @@ window.doctorsData = [
     {
         slug: 'hassan-mahmud',
         name: 'Dr. Hassan Mahmud',
+        hideTiming: true,
         specialty: 'Pediatric Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S.',
@@ -240,6 +245,7 @@ window.doctorsData = [
     {
         slug: 'm-zain-ul-abideen',
         name: 'Dr. M. Zain-Ul-Abideen',
+        timing: 'Mon-Thu & Sat • 3:00 PM - 7:00 PM',
         specialty: 'Chest Specialist',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S. Pulmonology',
@@ -264,7 +270,7 @@ window.doctorsData = [
         slug: 'qazi-aadil-inaam',
         name: 'Dr. Qazi Aadil Inaam',
         specialty: 'Urologist',
-         timing: 'Mon-Sat • 9:00 AM - 7:00 PM',
+        timing: 'Mon-Fri • 2:00 PM - 5:00 PM',
         experience: 'Consultant',
         details: 'M.B.B.S., M.S. Urology',
         image: 'images/dr qazi adil inam.jpg',
@@ -287,6 +293,7 @@ window.doctorsData = [
     {
         slug: 'mujahid-israr',
         name: 'Dr. Mujahid Israr',
+        timing: 'Sat-Sun • 7:00 AM - 8:00 PM',
         specialty: 'Gastroenterologist & Hepatologist',
         experience: 'Consultant',
         details: 'M.B.B.S. (Gold Medalist), F.C.P.S. (Medicine), F.C.P.S. (Gastroenterology)',
@@ -310,6 +317,7 @@ window.doctorsData = [
     {
         slug: 'asad-ali-sandhu',
         name: 'Dr. Asad Ali Sandhu',
+        timing: 'Mon-Sat • 3:00 PM - 7:00 PM',
         specialty: 'Orthopedic & Spine Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S. (Ortho)',
@@ -333,6 +341,7 @@ window.doctorsData = [
     {
         slug: 'umar-draz-tariq',
         name: 'Dr. Umar Draz Tariq',
+        timing: 'Mon-Sat • 11:00 AM - 7:00 PM',
         specialty: 'Dental Consultant, Endodontist',
         experience: 'Consultant',
         details: 'B.D.S. (Pak), MClin Endo (Aus)',
@@ -357,6 +366,7 @@ window.doctorsData = [
         slug: 'aqsa-liaqat',
         name: 'Dr. Aqsa Liaqat',
         gender: 'female',
+        hideTiming: true,
         specialty: 'Pathologist',
         experience: 'Consultant',
         details: 'M.B.B.S. (Pak), M.Phil. (Path)',
@@ -380,6 +390,7 @@ window.doctorsData = [
     {
         slug: 'muhammad-owais-sharif',
         name: 'Dr. Muhammad Owais Sharif',
+        hideTiming: true,
         specialty: 'Eye Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S.',
@@ -403,6 +414,7 @@ window.doctorsData = [
     {
         slug: 'm-waheedullah-khan',
         name: 'Dr. M. Waheedullah Khan',
+        timing: 'Mon-Sun • 10:00 AM - 2:00 PM & 6:00 PM - 8:00 PM',
         specialty: 'Eye Surgeon, Ophthalmology',
         experience: 'Consultant Mayo Hospital Lahore',
         details: 'MBBS, FCPS',
@@ -426,6 +438,7 @@ window.doctorsData = [
     {
         slug: 'touseef-ansar',
         name: 'Dr. Touseef Ansar',
+        timing: 'Mon-Sat • 10:00 AM - 12:00 PM & 3:00 PM - 7:00 PM | Sun • 10:00 AM - 3:00 PM',
         specialty: 'Dermatologist, Laser & Cosmetic Care',
         experience: 'Consultant',
         details: 'MBBS (Pb), MSc-PHM (Japan), DCDD',
@@ -449,6 +462,7 @@ window.doctorsData = [
     {
         slug: 'mohsin-ali-nadir',
         name: 'Dr. Mohsin Ali Nadir',
+        timing: 'Mon-Fri • 5:00 PM - 7:00 PM',
         specialty: 'Neurosurgeon, Brain & Spine Care',
         experience: 'Consultant',
         details: 'MBBS, MS Neurosurgery',
@@ -472,6 +486,7 @@ window.doctorsData = [
     {
         slug: 'talal-khurshid-bhatti',
         name: 'Dr. Talal Khurshid Bhatti',
+        timing: 'Mon-Sun • 11:00 AM - 6:00 PM',
         specialty: 'Gastroenterologist, Hepatologist',
         experience: 'Ex-Registrar CMH Rawalpindi',
         details: 'MBBS, MD Gastroenterology, MACG (USA)',
@@ -495,6 +510,7 @@ window.doctorsData = [
     {
         slug: 'zain-safdar',
         name: 'Dr. Zain Safdar',
+        timing: 'Mon-Sat • 11:00 AM - 7:00 PM',
         specialty: 'Cardiologist',
         experience: 'Ex-Registrar Punjab Institute of Cardiology Lahore',
         details: 'MBBS (Gold Medalist), FCPS Cardiology',
@@ -518,6 +534,7 @@ window.doctorsData = [
     {
         slug: 'muhammad-alam',
         name: 'Dr. Muhammad Alam',
+        timing: 'Mon-Thu & Sat • 5:00 PM - 7:00 PM',
         specialty: 'ENT Surgeon',
         experience: 'Consultant',
         details: 'MBBS, DLP',
@@ -541,6 +558,7 @@ window.doctorsData = [
     {
         slug: 'm-bilal-abid',
         name: 'Dr. M. Bilal Abid',
+        hideTiming: true,
         specialty: 'Pediatric Specialist, Developmental Pediatrics',
         experience: 'Consultant',
         details: 'MBBS (KE), FCPS-Peads (Pak)',
@@ -564,6 +582,7 @@ window.doctorsData = [
     {
         slug: 'farrukh-akhtar',
         name: 'Dr. Farrukh Akhtar',
+        timing: 'Mon-Sat • 5:00 PM - 8:00 PM',
         specialty: 'Psychiatrist',
         experience: 'Head of Psychiatry Department, CMH Kharian Medical College',
         details: 'MBBS, MCPS, FCPS, CMP',
@@ -587,6 +606,7 @@ window.doctorsData = [
     {
         slug: 'ch-zafar-iqbal-gill',
         name: 'Prof. Dr. Ch. Zafar Iqbal Gill',
+        timing: 'Mon-Sat • 11:00 AM - 5:00 PM | Sun • 10:00 AM - 12:00 PM',
         specialty: 'ENT Specialist, Head & Neck Surgeon',
         experience: 'Consultant',
         details: 'MBBS, FCPS',
@@ -611,6 +631,7 @@ window.doctorsData = [
         slug: 'sadaf-omair',
         name: 'Dr. Sadaf Omair',
         gender: 'female',
+        timing: 'Mon-Sat • 2:00 PM - 7:00 PM',
         specialty: 'Radiologist, Ultrasound Specialist',
         experience: 'WMO ABSTH Gujrat, Ex-Registrar CMH Kharian',
         details: 'MBBS, MCPS (Radiology)',
@@ -634,6 +655,7 @@ window.doctorsData = [
     {
         slug: 'subhan-gondal',
         name: 'Dr. Subhan Gondal',
+        hideTiming: true,
         specialty: 'Physiotherapist, Cardiopulmonary Physical Therapy',
         experience: 'Consultant',
         details: 'DPT, MS Cardiopulmonary Physical Therapy',
@@ -657,6 +679,7 @@ window.doctorsData = [
     {
         slug: 'hamid-mukhtar-butt',
         name: 'Dr. Hamid Mukhtar Butt',
+        timing: 'Mon-Sat • 2:00 PM - 5:00 PM',
         specialty: 'NeuroPhysician',
         experience: 'Consultant',
         details: 'NeuroPhysician',
@@ -680,6 +703,7 @@ window.doctorsData = [
     {
         slug: 'usman-ashraf',
         name: 'Dr. M. Usman Ashraf',
+        timing: 'Thu-Sat • 12:00 PM - 5:00 PM | Sun • 10:00 AM - 2:00 PM',
         specialty: 'Nephrologist',
         experience: 'Ex-Registrar, Sheikh Zayed Hospital, Lahore',
         details: 'MBBS, FCPS (Nephrology), MPSN, MISN',
