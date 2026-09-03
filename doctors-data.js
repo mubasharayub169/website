@@ -394,8 +394,8 @@ window.doctorsData = [
         specialty: 'Eye Surgeon',
         experience: 'Consultant',
         details: 'M.B.B.S., F.C.P.S.',
-        image: '/images/dr muhammad owais.png',
-        profileImage: '/images/dr muhammad owais.png',
+        image: 'images/dr muhammad owais.png',
+        profileImage: 'images/dr muhammad owais.png',
         bio: 'Dr. Muhammad Owais Sharif is an eye specialist and consultant eye surgeon, offering patient-centered ophthalmic evaluation and treatment planning.',
         highlights: [
             'Ophthalmology Consultation',
