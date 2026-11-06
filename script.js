@@ -178,9 +178,9 @@ const loginLinks = document.querySelectorAll('a.btn-login');
 const normalizePath = (path) => path.replace(/\/$/, '');
 
 loginLinks.forEach(link => {
-    link.setAttribute('href', 'dashboard-login.html');
+    link.setAttribute('href', 'https://opd.ikramhospital.com');
     if (!link.getAttribute('aria-label')) {
-        link.setAttribute('aria-label', 'Open staff dashboard login');
+        link.setAttribute('aria-label', 'Open OPD login');
     }
 });
 
