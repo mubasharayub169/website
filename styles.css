@@ -431,33 +431,33 @@ body.no-hero > section:first-of-type {
 }
 
 .btn-login {
-    padding: 14px 110px;
+    padding: 10px 28px;
     background: var(--gradient-primary);
     color: var(--white-color) !important;
-    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.35);
     border-radius: 50px;
     transition: var(--transition-smooth);
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     text-decoration: none;
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(255, 140, 0, 0.35);
     white-space: nowrap;
 }
 
 .btn-login::before {
-    content: '\f007';
+    content: '\f2f6';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .btn-login::after {
@@ -475,8 +475,8 @@ body.no-hero > section:first-of-type {
 
 .btn-login:hover {
     color: var(--white-color) !important;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 35px rgba(255, 140, 0, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(255, 140, 0, 0.5);
 }
 
 .btn-login:active::after {
